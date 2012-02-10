@@ -1,0 +1,14 @@
+plugin.tx_ptsolr {
+	view {
+		# cat=plugin.tx_ptsolr/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:pt_solr/Resources/Private/Templates/
+		# cat=plugin.tx_ptsolr/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:pt_solr/Resources/Private/Partials/
+		# cat=plugin.tx_ptsolr/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:pt_solr/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_ptsolr//a; type=int+; label=Default storage PID
+		storagePid = 
+	}
+}
