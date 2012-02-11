@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<T3DataStructure>
+  <sheets>
+  
+    <!--##########################-->
+    <!-- Tab for general settings -->
+    <!--##########################-->
+    <sDefault>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>General Options</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+
+
+          <settings.listIdentifier>
+            <TCEforms>
+              <label>List Identifier</label>
+              <config>
+                <type>select</type>
+                	<items>
+						<numIndex index="0" type="array">
+							<numIndex index="0">[Please select a defined listConfig]</numIndex>
+							<numIndex index="1"></numIndex>
+						</numIndex>
+					</items>
+					<default></default>
+					<itemsProcFunc>user_Tx_PtExtlist_Utility_FlexformDataProvider->getDefinedListConfigs</itemsProcFunc>
+              </config>
+            </TCEforms>
+          </settings.listIdentifier>
+          
+          
+          <switchableControllerActions>
+            <TCEforms>
+              <label>Plugin type</label>
+              <config>
+                <type>select</type>
+                <items type="array">
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">QuickSearch</numIndex>
+                    <numIndex index="1">QuickSearch->show;QuickSearch->submit</numIndex>
+                  </numIndex>
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">ResultList</numIndex>
+                    <numIndex index="1">ResultList->list</numIndex>
+                  </numIndex>
+                  <numIndex index="3" type="array">
+                    <numIndex index="0">SearchWord</numIndex>
+                    <numIndex index="1">SearchWord->show;SearchWord->submit</numIndex>
+                  </numIndex>
+                  <numIndex index="4" type="array">
+                    <numIndex index="0">Pager</numIndex>
+                    <numIndex index="1">Pager->show</numIndex>
+                  </numIndex>
+                  <numIndex index="5" type="array">
+                    <numIndex index="0">Facet</numIndex>
+                    <numIndex index="1">Facet->show;Facet->submit</numIndex>
+                  </numIndex>
+                </items>
+              </config>
+            </TCEforms>
+          </switchableControllerActions>
+
+
+        </el>
+      </ROOT>
+    </sDefault>
+
+    <!--############################-->
+    <!-- Tab for filterbox settings -->
+    <!--############################-->
+    <filterbox>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Filterbox settings</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+
+          <settings.filterboxIdentifier>
+            <TCEforms>
+              <label>Filterbox Identifier</label>
+              <config>
+                <type>input</type>
+                <size>30</size>
+                <eval>string</eval>
+              </config>
+            </TCEforms>
+          </settings.filterboxIdentifier>
+
+          <!-- this is not working generally yet and requires a patch in abstract controller! -->
+          <settings.controller.Filterbox.show.template>
+            <TCEforms>
+              <label>Filterbox Template</label>
+              <config>
+                <type>input</type>
+                <size>60</size>
+                <eval>string</eval>
+              </config>
+            </TCEforms>
+          </settings.controller.Filterbox.show.template>
+
+        </el>
+      </ROOT>
+    </filterbox>
+
+    
+    <!--##########################-->
+    <!-- Tab for pager settings   -->
+    <!--##########################-->
+    <pager>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Pager settings</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+           <settings.pagerIdentifier>
+            <TCEforms>
+              <label>Pager Identifier</label>
+              <config>
+                <type>input</type>
+                <size>30</size>
+                <eval>string</eval>
+              </config>
+            </TCEforms>
+          </settings.pagerIdentifier>
+        </el>
+      </ROOT>
+    </pager>
+
+    
+  </sheets>
+</T3DataStructure>

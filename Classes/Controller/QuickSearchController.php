@@ -24,22 +24,33 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-if (!defined ('TYPO3_MODE')) die ('Access denied.');
+/**
+ * Class implements controller for solr quick search box
+ *
+ * @package Controller
+ * @author Michael Knoll <knoll@punkt.de>
+ */
+class Tx_PtSolr_Controller_QuickSearchController extends Tx_PtSolr_Controller_AbstractActionController {
 
-// Register plugin in available plugins
-Tx_Extbase_Utility_Extension::registerPlugin(
-	$_EXTKEY,
-	'Pi1',
-	'Solr'
-);
+    /**
+     * Action renders quick search
+     *
+     * @return string Rendered show action
+     */
+    public function showAction() {
+        return "Show Quick Search";
+    }
 
-$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
-$pluginSignature = strtolower($extensionName) . '_pi1';
 
-t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/FlexForm.xml');
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 
-// Make static TypoScript template available in includes
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', '[pt_solr] Solr');
+    /**
+     * Action renders submit action for quick search
+     *
+     * @return string Rendered submit action
+     */
+    public function submitAction() {
+        return "Quick Search Submit Action";
+    }
 
+}
 ?>

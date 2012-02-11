@@ -1,10 +1,20 @@
 plugin.tx_ptsolr {
+
 	view {
 		templateRootPath = {$plugin.tx_ptsolr.view.templateRootPath}
 		partialRootPath = {$plugin.tx_ptsolr.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_ptsolr.view.layoutRootPath}
 	}
+
 	persistence {
 		storagePid = {$plugin.tx_ptsolr.persistence.storagePid}
 	}
+
+	listConfig {
+
+
+	}
 }
+
+
+plugin.tx_ptextlist.settings.listConfig.solr < plugin.tx_ptsolr.listConfig

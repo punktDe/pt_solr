@@ -24,22 +24,33 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-if (!defined ('TYPO3_MODE')) die ('Access denied.');
+/**
+ * Class implements controller for solr search word filter
+ *
+ * @package Controller
+ * @author Michael Knoll <knoll@punkt.de>
+ */
+class Tx_PtSolr_Controller_SearchWordFilterController extends Tx_PtSolr_Controller_AbstractActionController {
 
-// Register plugin in available plugins
-Tx_Extbase_Utility_Extension::registerPlugin(
-	$_EXTKEY,
-	'Pi1',
-	'Solr'
-);
+    /**
+     * Action renders result list
+     *
+     * @return string Rendered result list action
+     */
+    public function showAction() {
+        return "Show Search Word Filter Controller";
+    }
 
-$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
-$pluginSignature = strtolower($extensionName) . '_pi1';
 
-t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/FlexForm.xml');
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 
-// Make static TypoScript template available in includes
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', '[pt_solr] Solr');
+    /**
+     * Action renders submit action for search word filter
+     *
+     * @return string Rendered submit action
+     */
+    public function submitAction() {
+        return "Search Word Filter Submit Action";
+    }
 
+}
 ?>
