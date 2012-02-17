@@ -46,11 +46,13 @@ class Tx_PtSolr_Controller_QuickSearchController extends Tx_PtSolr_Controller_Ab
     /**
      * Action renders submit action for quick search
      *
+     * @param string $filterValue Filter value submitted by quick search filter
      * @return string Rendered submit action
      */
-    public function submitAction() {
+    public function submitAction($filterValue='') {
         // Question: Is this really necessary?!?
         // TODO implement me!
+        return 'Given filter value: ' . $filterValue;
     }
 
 }
