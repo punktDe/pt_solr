@@ -1,3 +1,5 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_solr/Configuration/TypoScript/Extlist/solr.ts">
+
 plugin.tx_ptsolr {
 
 	view {
@@ -10,11 +12,5 @@ plugin.tx_ptsolr {
 		storagePid = {$plugin.tx_ptsolr.persistence.storagePid}
 	}
 
-	listConfig {
-
-
-	}
 }
 
-
-plugin.tx_ptextlist.settings.listConfig.solr < plugin.tx_ptsolr.listConfig
