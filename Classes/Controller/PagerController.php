@@ -24,30 +24,33 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-if (!defined ('TYPO3_MODE')) {
-	die ('Access denied.');
+/**
+ * Class implements controller for solr resultlist pager
+ *
+ * @package Controller
+ * @author Michael Knoll <knoll@punkt.de>
+ */
+class Tx_PtSolr_Controller_PagerController extends Tx_PtSolr_Controller_AbstractActionController {
+
+    /**
+     * Action renders pager
+     *
+     * @return string Rendered show pager action
+     */
+    public function showAction() {
+        return "Show Pager show action";
+    }
+
+
+
+    /**
+     * Action renders submit action for pager
+     *
+     * @return string Rendered submit action
+     */
+    public function submitAction() {
+        return "Pager Submit Action";
+    }
+
 }
-
-// Configures FE plugins for this extension
-Tx_Extbase_Utility_Extension::configurePlugin(
-	$_EXTKEY,
-	'Pi1',
-	array(
-		'ResultList' => 'list',
-        'SearchWordFilter' => 'show, submit',
-        'BreadCrumbs' => 'show',
-        'QuickSearch' => 'show, submit',
-        'Pager' => 'show',
-        'FacetFilter' => 'show, submit'
-	),
-    array(
-        'ResultList' => 'list',
-        'SearchWordFilter' => 'show, submit',
-        'BreadCrumbs' => 'show',
-        'QuickSearch' => 'show, submit',
-        'Pager' => 'show',
-        'FacetFilter' => 'show, submit'
-    )
-);
-
 ?>

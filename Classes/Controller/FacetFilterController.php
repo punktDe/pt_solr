@@ -24,30 +24,33 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-if (!defined ('TYPO3_MODE')) {
-	die ('Access denied.');
+/**
+ * Class implements controller for facet filter
+ *
+ * @package Controller
+ * @author Michael Knoll <knoll@punkt.de>
+ */
+class Tx_PtSolr_Controller_FacetFilterController extends Tx_PtSolr_Controller_AbstractActionController {
+
+    /**
+     * Action renders show action
+     *
+     * @return string Rendered show action
+     */
+    public function showAction() {
+        return "Show Facet Filter action";
+    }
+
+
+
+    /**
+     * Action renders submit action for facet filter
+     *
+     * @return string Rendered submit action
+     */
+    public function submitAction() {
+        return "Facet Filter Submit Action";
+    }
+
 }
-
-// Configures FE plugins for this extension
-Tx_Extbase_Utility_Extension::configurePlugin(
-	$_EXTKEY,
-	'Pi1',
-	array(
-		'ResultList' => 'list',
-        'SearchWordFilter' => 'show, submit',
-        'BreadCrumbs' => 'show',
-        'QuickSearch' => 'show, submit',
-        'Pager' => 'show',
-        'FacetFilter' => 'show, submit'
-	),
-    array(
-        'ResultList' => 'list',
-        'SearchWordFilter' => 'show, submit',
-        'BreadCrumbs' => 'show',
-        'QuickSearch' => 'show, submit',
-        'Pager' => 'show',
-        'FacetFilter' => 'show, submit'
-    )
-);
-
 ?>

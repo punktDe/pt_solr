@@ -39,24 +39,28 @@
                 <type>select</type>
                 <items type="array">
                   <numIndex index="1" type="array">
-                    <numIndex index="0">QuickSearch</numIndex>
+                    <numIndex index="0">Quick Search</numIndex>
                     <numIndex index="1">QuickSearch->show;QuickSearch->submit</numIndex>
                   </numIndex>
                   <numIndex index="2" type="array">
-                    <numIndex index="0">ResultList</numIndex>
+                    <numIndex index="0">Result List</numIndex>
                     <numIndex index="1">ResultList->list</numIndex>
                   </numIndex>
                   <numIndex index="3" type="array">
-                    <numIndex index="0">SearchWord</numIndex>
-                    <numIndex index="1">SearchWord->show;SearchWord->submit</numIndex>
+                    <numIndex index="0">Searchword Filter</numIndex>
+                    <numIndex index="1">SearchWordFilter->show;SearchWordFilter->submit</numIndex>
                   </numIndex>
                   <numIndex index="4" type="array">
                     <numIndex index="0">Pager</numIndex>
                     <numIndex index="1">Pager->show</numIndex>
                   </numIndex>
                   <numIndex index="5" type="array">
-                    <numIndex index="0">Facet</numIndex>
-                    <numIndex index="1">Facet->show;Facet->submit</numIndex>
+                    <numIndex index="0">Facet Filter</numIndex>
+                    <numIndex index="1">FacetFilter->show;FacetFilter->submit</numIndex>
+                  </numIndex>
+                  <numIndex index="6" type="array">
+                    <numIndex index="0">Breadcrumbs</numIndex>
+                    <numIndex index="1">BreadCrumbs->show</numIndex>
                   </numIndex>
                 </items>
               </config>
