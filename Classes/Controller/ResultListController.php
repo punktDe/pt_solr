@@ -38,7 +38,7 @@ class Tx_PtSolr_Controller_ResultListController extends Tx_PtSolr_Controller_Abs
      * @return string Rendered result list action
      */
     public function listAction() {
-        return "Result list";
+        // TODO implement me
     }
 
 }

@@ -38,7 +38,7 @@ class Tx_PtSolr_Controller_PagerController extends Tx_PtSolr_Controller_Abstract
      * @return string Rendered show pager action
      */
     public function showAction() {
-        return "Show Pager show action";
+        // TODO implement me!
     }
 
 
@@ -49,7 +49,7 @@ class Tx_PtSolr_Controller_PagerController extends Tx_PtSolr_Controller_Abstract
      * @return string Rendered submit action
      */
     public function submitAction() {
-        return "Pager Submit Action";
+        // TODO implement me!
     }
 
 }

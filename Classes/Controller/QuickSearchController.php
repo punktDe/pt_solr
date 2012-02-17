@@ -38,7 +38,7 @@ class Tx_PtSolr_Controller_QuickSearchController extends Tx_PtSolr_Controller_Ab
      * @return string Rendered show action
      */
     public function showAction() {
-        return "Show Quick Search";
+        // TODO implement me!
     }
 
 
@@ -49,7 +49,8 @@ class Tx_PtSolr_Controller_QuickSearchController extends Tx_PtSolr_Controller_Ab
      * @return string Rendered submit action
      */
     public function submitAction() {
-        return "Quick Search Submit Action";
+        // Question: Is this really necessary?!?
+        // TODO implement me!
     }
 
 }

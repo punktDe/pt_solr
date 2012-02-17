@@ -38,7 +38,7 @@ class Tx_PtSolr_Controller_BreadCrumbsController extends Tx_PtSolr_Controller_Ab
      * @return string Rendered show action
      */
     public function showAction() {
-        return "Show Breadcrumbs";
+        // TODO implement me!
     }
 
 }

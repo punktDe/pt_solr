@@ -38,7 +38,7 @@ class Tx_PtSolr_Controller_SearchWordFilterController extends Tx_PtSolr_Controll
      * @return string Rendered result list action
      */
     public function showAction() {
-        return "Show Search Word Filter Controller";
+        // TODO implement me!
     }
 
 
@@ -49,7 +49,7 @@ class Tx_PtSolr_Controller_SearchWordFilterController extends Tx_PtSolr_Controll
      * @return string Rendered submit action
      */
     public function submitAction() {
-        return "Search Word Filter Submit Action";
+        // TODO implement me!
     }
 
 }

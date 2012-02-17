@@ -38,7 +38,7 @@ class Tx_PtSolr_Controller_FacetFilterController extends Tx_PtSolr_Controller_Ab
      * @return string Rendered show action
      */
     public function showAction() {
-        return "Show Facet Filter action";
+        // TODO implement me!
     }
 
 
@@ -49,7 +49,7 @@ class Tx_PtSolr_Controller_FacetFilterController extends Tx_PtSolr_Controller_Ab
      * @return string Rendered submit action
      */
     public function submitAction() {
-        return "Facet Filter Submit Action";
+        // TODO implement me!
     }
 
 }
