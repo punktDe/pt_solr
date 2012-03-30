@@ -38,7 +38,10 @@ class Tx_PtSolr_Controller_SearchWordFilterController extends Tx_PtSolr_Controll
      * @return string Rendered result list action
      */
     public function showAction() {
-        // TODO implement me!
+        /**
+		 * Nothing to do here since default components are assigned to view
+		 * in abstract controller and only template is rendered
+		 */
     }
 
 
@@ -49,7 +52,8 @@ class Tx_PtSolr_Controller_SearchWordFilterController extends Tx_PtSolr_Controll
      * @return string Rendered submit action
      */
     public function submitAction() {
-        // TODO implement me!
+        $this->solrExtlistContext->resetPagerCollection();
+		$this->forward('show');
     }
 
 }

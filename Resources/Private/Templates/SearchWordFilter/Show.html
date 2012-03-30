@@ -1,4 +1,6 @@
+{namespace extlist=Tx_PtExtlist_ViewHelpers}
+
 <f:form action="submit" method="post">
-    Search word: <f:form.textfield name="filterValue" />
+    Search word: <f:form.textfield name="{extlist:namespace.FormElementName(object:'{searchWordFilter}' property:'filterValue')}" value="{searchWordFilter.filterValue}" />
     <f:form.submit value="Search" />
 </f:form>

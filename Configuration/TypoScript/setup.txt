@@ -1,16 +1,18 @@
+####################################################
+# TypoScript configuration for pt_solr
+#
+# @author Michael Knoll <knoll@punkt.de>
+# @package Typo3
+# @subpackage pt_solr
+####################################################
+
+## Inclusion of external TypoScript resources
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist_solr/Configuration/TypoScript/BaseConfig/BaseConfig.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:solr/static/solr/setup.txt">
+
+
+
+## Inclusion of pt_solr's TypoScript resources
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_solr/Configuration/TypoScript/Extlist/solr.ts">
-
-plugin.tx_ptsolr {
-
-	view {
-		templateRootPath = {$plugin.tx_ptsolr.view.templateRootPath}
-		partialRootPath = {$plugin.tx_ptsolr.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_ptsolr.view.layoutRootPath}
-	}
-
-	persistence {
-		storagePid = {$plugin.tx_ptsolr.persistence.storagePid}
-	}
-
-}
-
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_solr/Configuration/TypoScript/Extbase/BaseSettings.ts">

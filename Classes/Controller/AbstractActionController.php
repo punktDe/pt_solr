@@ -32,6 +32,13 @@
  */
 class Tx_PtSolr_Controller_AbstractActionController extends Tx_PtExtbase_Controller_AbstractActionController {
 
+	/**
+	 * Holds default list identifier for solr configuration
+	 */
+	const SOLR_LIST_IDENTIFIER = 'solr';
+
+
+
     /**
      * Holds list identifier of solr list configuration set in TS or FlexForm
      *
@@ -44,9 +51,27 @@ class Tx_PtSolr_Controller_AbstractActionController extends Tx_PtExtbase_Control
     /**
      * Holds extlist context for given solr configuration
      *
-     * @var Tx_PtExtlist_ExtlistContext_ExtlistContext
+     * @var Tx_PtSolr_Extlist_SolrExtlistContext
      */
     protected $solrExtlistContext;
+
+
+
+	/**
+	 * @var Tx_PtSolr_Extlist_SolrExtlistContextFactory
+	 */
+	protected $solrExtlistContextFactory;
+
+
+
+	/**
+	 * Injects extlist context factory
+	 *
+	 * @param Tx_PtSolr_Extlist_SolrExtlistContextFactory $solrExtlistContextFactory
+	 */
+	public function injectSolrExtlistContextFactory(Tx_PtSolr_Extlist_SolrExtlistContextFactory $solrExtlistContextFactory) {
+		$this->solrExtlistContextFactory = $solrExtlistContextFactory;
+	}
 
 
 
@@ -56,6 +81,7 @@ class Tx_PtSolr_Controller_AbstractActionController extends Tx_PtExtbase_Control
     protected function initializeAction() {
         parent::initializeAction();
         $this->determineSolrListIdentifier();
+		$this->initExtlistContext();
     }
 
 
@@ -67,10 +93,41 @@ class Tx_PtSolr_Controller_AbstractActionController extends Tx_PtExtbase_Control
         if (isset($this->settings['listIdentifier']) && $this->settings['listIdentifier'] !== '') {
             $listIdentifier = $this->settings['listIdentifier'];
         } else {
-            $listIdentifier = 'solr';
+            $listIdentifier = self::SOLR_LIST_IDENTIFIER;
         }
         $this->solrExtlistIdentifier = $listIdentifier;
     }
+
+
+
+	/**
+	 * Initializes extlist context for current list identifier
+	 */
+	protected function initExtlistContext() {
+		$this->solrExtlistContext = $this->solrExtlistContextFactory->getContextByListIdentifierNonStatic($this->solrExtlistIdentifier);
+	}
+
+
+
+	/**
+	 * Initializes default components in view
+	 *
+	 * @param $view
+	 */
+	protected function initializeView($view) {
+		parent::initializeView($view);
+		$this->initializeDefaultComponentsInView();
+	}
+
+
+
+	/**
+	 * Assign default components to current view
+	 */
+	protected function initializeDefaultComponentsInView() {
+		$this->view->assign('searchWordFilter', $this->solrExtlistContext->getSearchWordFilter());
+		$this->view->assign('resultList', $this->solrExtlistContext->getRenderedListData());
+	}
 
 }
 ?>
