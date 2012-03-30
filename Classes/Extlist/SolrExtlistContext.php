@@ -69,7 +69,7 @@ class Tx_PtSolr_Extlist_SolrExtlistContext extends Tx_PtExtlist_ExtlistContext_E
 	 * @return string
 	 */
 	public function getSearchWordFilterIdentifier() {
-		return $this->listSettings['backendConfig']['searchWordFilter'];
+		return $this->dataBackend->getSearchwordFilterIdentifier();
 	}
 
 }
