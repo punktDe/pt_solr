@@ -42,7 +42,7 @@ class Tx_PtSolr_Extlist_SolrExtlistContextFactory extends Tx_PtExtlist_ExtlistCo
 	 */
 	public static function getContextByListIdentifier($listIdentifier) {
 
-		if(!array_key_exists($listIdentifier, self::$instances)) {
+		if(!array_key_exists($listIdentifier, parent::$instances)) {
 
 			$extListBackend = Tx_PtExtlist_Domain_DataBackend_DataBackendFactory::getInstanceByListIdentifier($listIdentifier, false);
 
@@ -56,11 +56,11 @@ class Tx_PtSolr_Extlist_SolrExtlistContextFactory extends Tx_PtExtlist_ExtlistCo
 				$extListBackend = Tx_PtExtlist_Domain_DataBackend_DataBackendFactory::createDataBackend($configurationBuilder);
 			}
 
-			self::$instances[$listIdentifier] = self::buildContext($extListBackend);
+			parent::$instances[$listIdentifier] = self::buildContext($extListBackend);
 
 		}
 
-		return self::$instances[$listIdentifier];
+		return parent::$instances[$listIdentifier];
 	}
 
 

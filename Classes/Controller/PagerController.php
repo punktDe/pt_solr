@@ -41,16 +41,5 @@ class Tx_PtSolr_Controller_PagerController extends Tx_PtSolr_Controller_Abstract
         // TODO implement me!
     }
 
-
-
-    /**
-     * Action renders submit action for pager
-     *
-     * @return string Rendered submit action
-     */
-    public function submitAction() {
-        // TODO implement me!
-    }
-
 }
 ?>

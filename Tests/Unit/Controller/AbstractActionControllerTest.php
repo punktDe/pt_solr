@@ -98,15 +98,19 @@ class Tx_PtSolr_Tests_Unit_Controller_AbstractActionControllerTest extends Tx_Pt
 	public function initializeDefaultComponentsInViewInitializesDefaultComponents() {
 		$searchWordFilterMock = $this->getMock('Tx_PtExtlist_Domain_Model_Filter_FilterInterface');
 		$renderedListDataMock = $this->getMock('Tx_PtExtlist_Domain_Model_List_ListData');
+		$pagerMock = $this->getMock('Tx_PtExtlist_Domain_Model_Pager_PagerInterface');
+		$pagerCollectionMock = $this->getMock('Tx_PtExtlist_Domain_Model_Pager_PagerCollection', array(), array(), '', FALSE);
 		$solrExtlistContextMock = $this->getMock(
 			'Tx_PtSolr_Extlist_SolrExtlistContext',
-			array('getSearchwordFilter', 'getRenderedListData'),
+			array('getSearchwordFilter', 'getRenderedListData', 'getPager', 'getPagerCollection'),
 			array(),
 			'',
 			FALSE
 		);
 		$solrExtlistContextMock->expects($this->once())->method('getSearchwordFilter')->will($this->returnValue($searchWordFilterMock));
 		$solrExtlistContextMock->expects($this->once())->method('getRenderedListData')->will($this->returnValue($renderedListDataMock));
+		$solrExtlistContextMock->expects($this->once())->method('getPager')->will($this->returnValue($pagerMock));
+		$solrExtlistContextMock->expects($this->once())->method('getPagerCollection')->will($this->returnValue($pagerCollectionMock));
 
 		$viewMock = $this->getMock(
 			'Tx_PtExtbase_View_BaseView',
@@ -117,6 +121,8 @@ class Tx_PtSolr_Tests_Unit_Controller_AbstractActionControllerTest extends Tx_Pt
 		);
 		$viewMock->expects($this->at(0))->method('assign')->with('searchWordFilter', $searchWordFilterMock);
 		$viewMock->expects($this->at(1))->method('assign')->with('resultList', $renderedListDataMock);
+		$viewMock->expects($this->at(2))->method('assign')->with('pager', $pagerMock);
+		$viewMock->expects($this->at(3))->method('assign')->with('pagerCollection', $pagerCollectionMock);
 
 		$this->abstractControllerMock->__test_setView($viewMock);
 		$this->abstractControllerMock->__test_setSolrExtlistContext($solrExtlistContextMock);

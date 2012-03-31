@@ -1,4 +1,10 @@
-<f:for each="{resultList}" as="row">
-	<h2>{row.title}</h2>
-	<div>{row.content}</div>
-</f:for>
+Ergebnisse
+<ol class="tx-solr-resultlist">
+	<f:for each="{resultList}" as="row">
+		<li class="tx-solr-result" style="margin-bottom: 20px; list-style: none">
+			<h3><a href="{row.url}">{row.title}</a></h3>
+			<cite style="color: #008000;">{row.url}</cite><br/>
+			<span class="tx-solr-result-content">{row.content}</span>
+		</li>
+	</f:for>
+</ol>

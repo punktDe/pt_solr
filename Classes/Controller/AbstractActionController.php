@@ -127,6 +127,8 @@ class Tx_PtSolr_Controller_AbstractActionController extends Tx_PtExtbase_Control
 	protected function initializeDefaultComponentsInView() {
 		$this->view->assign('searchWordFilter', $this->solrExtlistContext->getSearchWordFilter());
 		$this->view->assign('resultList', $this->solrExtlistContext->getRenderedListData());
+		$this->view->assign('pager', $this->solrExtlistContext->getPager('delta'));
+		$this->view->assign('pagerCollection', $this->solrExtlistContext->getPagerCollection());
 	}
 
 }

@@ -242,7 +242,7 @@ plugin.tx_ptextlist.settings.listConfig.solr {
     #####################################################################
     pager < plugin.tx_ptextlist.prototype.pager
     pager {
-        itemsPerPage = 20
+        itemsPerPage = 10
 
         pagerConfigs {
             delta {
