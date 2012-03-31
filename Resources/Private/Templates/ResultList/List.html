@@ -1,5 +1,8 @@
-Ergebnisse
-<ol class="tx-solr-resultlist">
+<f:if condition="{searchResultInformation.resultsCount}">
+	<p style="color:gray">{searchResultInformation.resultsCount} <f:if condition="{searchResultInformation.resultsCount} > 1"><f:then>Ergebnisse</f:then><f:else>Ergebnis</f:else></f:if> gefunden für <em>{searchResultInformation.searchPhrase}</em></p>
+</f:if>
+
+<ol class="tx-solr-resultlist" style="border: 0; margin: 0; padding: 0">
 	<f:for each="{resultList}" as="row">
 		<li class="tx-solr-result" style="margin-bottom: 20px; list-style: none">
 			<h3><a href="{row.url}">{row.title}</a></h3>
