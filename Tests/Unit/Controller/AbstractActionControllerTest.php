@@ -100,9 +100,10 @@ class Tx_PtSolr_Tests_Unit_Controller_AbstractActionControllerTest extends Tx_Pt
 		$renderedListDataMock = $this->getMock('Tx_PtExtlist_Domain_Model_List_ListData');
 		$pagerMock = $this->getMock('Tx_PtExtlist_Domain_Model_Pager_PagerInterface');
 		$pagerCollectionMock = $this->getMock('Tx_PtExtlist_Domain_Model_Pager_PagerCollection', array(), array(), '', FALSE);
+		$dataBackendMock = $this->getMock('Tx_PtExtlistSolr_Domain_SolrDataBackend_DataBackend', array(), array(), '', FALSE);
 		$solrExtlistContextMock = $this->getMock(
 			'Tx_PtSolr_Extlist_SolrExtlistContext',
-			array('getSearchwordFilter', 'getRenderedListData', 'getPager', 'getPagerCollection'),
+			array('getSearchwordFilter', 'getRenderedListData', 'getPager', 'getPagerCollection', 'getDataBackend'),
 			array(),
 			'',
 			FALSE
@@ -111,6 +112,7 @@ class Tx_PtSolr_Tests_Unit_Controller_AbstractActionControllerTest extends Tx_Pt
 		$solrExtlistContextMock->expects($this->once())->method('getRenderedListData')->will($this->returnValue($renderedListDataMock));
 		$solrExtlistContextMock->expects($this->once())->method('getPager')->will($this->returnValue($pagerMock));
 		$solrExtlistContextMock->expects($this->once())->method('getPagerCollection')->will($this->returnValue($pagerCollectionMock));
+		$solrExtlistContextMock->expects($this->once())->method('getDataBackend')->will($this->returnValue($dataBackendMock));
 
 		$viewMock = $this->getMock(
 			'Tx_PtExtbase_View_BaseView',
@@ -123,6 +125,7 @@ class Tx_PtSolr_Tests_Unit_Controller_AbstractActionControllerTest extends Tx_Pt
 		$viewMock->expects($this->at(1))->method('assign')->with('resultList', $renderedListDataMock);
 		$viewMock->expects($this->at(2))->method('assign')->with('pager', $pagerMock);
 		$viewMock->expects($this->at(3))->method('assign')->with('pagerCollection', $pagerCollectionMock);
+		$viewMock->expects($this->at(4))->method('assign')->with('searchResultInformation', $this->anything());
 
 		$this->abstractControllerMock->__test_setView($viewMock);
 		$this->abstractControllerMock->__test_setSolrExtlistContext($solrExtlistContextMock);
