@@ -144,7 +144,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
     /**
      * Holds instance of solr query interpreter
      *
-     * @var Tx_PtExtlistSolr_Domain_SolrDataBackend_SolrInterpreter_SolrInterpreter
+     * @var Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter
      */
     protected $queryInterpreter;
 
@@ -456,7 +456,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	/**
 	 * Getter for current query interpreter
 	 *
-	 * @return Tx_PtExtlistSolr_Domain_SolrDataBackend_SolrInterpreter_SolrInterpreter
+	 * @return Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter
 	 */
 	public function getQueryInterpreter() {
 		return $this->queryInterpreter;
@@ -573,7 +573,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
     protected function initBackend() {
         // TODO although this is set in databackend factory we have to set it here again, as
         // factory is not capable of handling getInstance() method atm.
-        $this->queryInterpreter = Tx_PtExtlistSolr_Domain_SolrDataBackend_SolrInterpreter_SolrInterpreter::getInstance();
+        $this->queryInterpreter = Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter::getInstance();
 		$this->pagerCollection->setItemCount(PHP_INT_MAX);
     }
 
