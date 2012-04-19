@@ -60,6 +60,6 @@ $TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_autocomplete'] = 'EXT:'.$_EXTKE
 
 
 // registering the eID script for live-search feature
-$TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_livesearch'] = 'EXT:'.$_EXTKEY.'/Classes/Eid/LiveSearch.php';
+$TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_quicksearch'] = 'EXT:'.$_EXTKEY.'/Classes/Eid/QuickSearch.php';
 
 ?>

@@ -29,7 +29,7 @@
  * This script handles live-search queries.
  * Use this URL for testing:
  *
- * http://pt_list_dev.centos.localhost/index.php?id=37&eID=tx_ptsolr_autocomplete&termLowercase=album
+ * http://pt_list_dev.centos.localhost/index.php?id=37&eID=tx_ptsolr_quicksearch&termLowercase=album
  */
 
 
