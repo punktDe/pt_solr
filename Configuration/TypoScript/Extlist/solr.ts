@@ -34,6 +34,10 @@ plugin.tx_ptextlist.settings.listConfig.solr {
     backendConfig < plugin.tx_ptextlist.prototype.backend.solr
     backendConfig {
 
+    	dataBackendClass = Tx_PtSolr_Extlist_DataBackend_SolrDataBackend
+
+
+
         searchWordFilter = searchWordFilterbox.searchWordFilter
 
 
@@ -60,19 +64,19 @@ plugin.tx_ptextlist.settings.listConfig.solr {
         queryModifierChain {
 
             10 {
-                queryModifierClass = Tx_PtExtlistSolr_Domain_SolrDataBackend_QueryModifier_SearchWordModifier
+                queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_SearchWordModifier
             }
 
             20 {
-                queryModifierClass = Tx_PtExtlistSolr_Domain_SolrDataBackend_QueryModifier_FilterModifier
+                queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_FilterModifier
             }
 
             30 {
-            	queryModifierClass = Tx_PtExtlistSolr_Domain_SolrDataBackend_QueryModifier_LimitModifier
+            	queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_LimitModifier
             }
 
             40 {
-                queryModifierClass = Tx_PtExtlistSolr_Domain_SolrDataBackend_QueryModifier_UserAccessGroupModifier
+                queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_UserAccessGroupModifier
             }
 
         }
@@ -82,7 +86,7 @@ plugin.tx_ptextlist.settings.listConfig.solr {
         facetQueryModifierChain {
 
             30 {
-                queryModifierClass = Tx_PtExtlistSolr_Domain_SolrDataBackend_QueryModifier_UserAccessGroupModifier
+                queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_UserAccessGroupModifier
             }
 
         }

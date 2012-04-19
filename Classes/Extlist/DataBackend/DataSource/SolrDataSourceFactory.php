@@ -3,7 +3,7 @@
  *  Copyright notice
  *
  *  (c) 2010-2011 punkt.de GmbH - Karlsruhe, Germany - http://www.punkt.de
- *  Authors: Daniel Lienert, Michael Knoll
+ *  Authors: Daniel Lienert, Michael Knoll, Christoph Ehscheidt
  *  All rights reserved
  *
  *  For further information: http://extlist.punkt.de <extlist@punkt.de>
@@ -27,52 +27,15 @@
  ***************************************************************/
 
 /**
- * Class implements result information for solr search.
+ * Class implements factory for solr data source objects
  *
- * @package Domain
- * @author Michael Knoll
+ * @author Daniel Lienert
+ * @package Extlist
+ * @subpackage DataBackend\DataSource
  */
-class Tx_PtSolr_Domain_SearchResultInformation {
+class Tx_PtSolr_Extlist_DataBackend_DataSource_SolrDataSourceFactory {
 
-	/**
-	 * Numbers of results found
-	 *
-	 * @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend
-	 */
-	protected $solrDataBackend;
-
-
-
-	/**
-	 * Constructor injects solr data backend
-	 *
-	 * @param Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend
-	 */
-	public function __construct(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend) {
-		$this->solrDataBackend = $solrDataBackend;
-	}
-
-
-
-	/**
-	 * Getter for current search phrase
-	 *
-	 * @return string
-	 */
-	public function getSearchPhrase() {
-		return $this->solrDataBackend->getSearchWords();
-	}
-
-
-
-	/**
-	 * Getter for total item count
-	 *
-	 * @return int
-	 */
-	public function getResultsCount() {
-		return $this->solrDataBackend->getTotalItemsCount();
-	}
+    
 
 }
 ?>

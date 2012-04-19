@@ -3,7 +3,7 @@
  *  Copyright notice
  *
  *  (c) 2010-2011 punkt.de GmbH - Karlsruhe, Germany - http://www.punkt.de
- *  Authors: Daniel Lienert, Michael Knoll
+ *  Authors: Daniel Lienert, Michael Knoll, Christoph Ehscheidt
  *  All rights reserved
  *
  *  For further information: http://extlist.punkt.de <extlist@punkt.de>
@@ -27,52 +27,33 @@
  ***************************************************************/
 
 /**
- * Class implements result information for solr search.
+ * Class implements abstract query modifier to be extended by query modifiers for solr data backend
  *
- * @package Domain
  * @author Michael Knoll
+ * @author Daniel Lienert
+ * @package Extlist
+ * @subpackage DataBackend\QueryModifier
  */
-class Tx_PtSolr_Domain_SearchResultInformation {
+abstract class Tx_PtSolr_Extlist_DataBackend_QueryModifier_AbstractQueryModifier implements Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierInterface {
 
-	/**
-	 * Numbers of results found
-	 *
-	 * @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend
-	 */
-	protected $solrDataBackend;
-
-
-
-	/**
-	 * Constructor injects solr data backend
-	 *
-	 * @param Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend
-	 */
-	public function __construct(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend) {
-		$this->solrDataBackend = $solrDataBackend;
-	}
+    /**
+     * Holds instance of associated solr data backend
+     *
+     * @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend
+     */
+    protected $dataBackend;
 
 
 
-	/**
-	 * Getter for current search phrase
-	 *
-	 * @return string
-	 */
-	public function getSearchPhrase() {
-		return $this->solrDataBackend->getSearchWords();
-	}
-
-
-
-	/**
-	 * Getter for total item count
-	 *
-	 * @return int
-	 */
-	public function getResultsCount() {
-		return $this->solrDataBackend->getTotalItemsCount();
-	}
+    /**
+     * Injector for solr data backend
+     *
+     * @param Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend
+     * @return void
+     */
+    public function injectDataBackend(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend) {
+        $this->dataBackend = $solrDataBackend;
+    }
 
 }
 ?>

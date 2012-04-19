@@ -27,52 +27,35 @@
  ***************************************************************/
 
 /**
- * Class implements result information for solr search.
+ * Interface for query modifiers for solr data backend.
  *
- * @package Domain
+ * Modifiers can be chained to modify solr query due to certain responsibilities.
+ *
  * @author Michael Knoll
+ * @package Extlist
+ * @subpackage DataBackend\QueryModifier
  */
-class Tx_PtSolr_Domain_SearchResultInformation {
+interface Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierInterface {
 
-	/**
-	 * Numbers of results found
-	 *
-	 * @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend
-	 */
-	protected $solrDataBackend;
-
-
-
-	/**
-	 * Constructor injects solr data backend
-	 *
-	 * @param Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend
-	 */
-	public function __construct(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend) {
-		$this->solrDataBackend = $solrDataBackend;
-	}
+    /**
+     * Injector for solr data backend
+     *
+     * @abstract
+     * @param Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend
+     * @return void
+     */
+    public function injectDataBackend(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend);
 
 
 
-	/**
-	 * Getter for current search phrase
-	 *
-	 * @return string
-	 */
-	public function getSearchPhrase() {
-		return $this->solrDataBackend->getSearchWords();
-	}
-
-
-
-	/**
-	 * Getter for total item count
-	 *
-	 * @return int
-	 */
-	public function getResultsCount() {
-		return $this->solrDataBackend->getTotalItemsCount();
-	}
+    /**
+     * Modifies given query due to functionality of current modifier
+     *
+     * @abstract
+     * @param tx_solr_Query $solrQuery
+     * @return void
+     */
+    public function modifyQuery(tx_solr_Query $solrQuery);
 
 }
 ?>

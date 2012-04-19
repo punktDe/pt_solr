@@ -3,7 +3,7 @@
  *  Copyright notice
  *
  *  (c) 2010-2011 punkt.de GmbH - Karlsruhe, Germany - http://www.punkt.de
- *  Authors: Daniel Lienert, Michael Knoll
+ *  Authors: Daniel Lienert, Michael Knoll, Christoph Ehscheidt
  *  All rights reserved
  *
  *  For further information: http://extlist.punkt.de <extlist@punkt.de>
@@ -27,52 +27,38 @@
  ***************************************************************/
 
 /**
- * Class implements result information for solr search.
+ * Class implements modifier that sets current usergroups to restrict results of query to current fe_user
  *
- * @package Domain
  * @author Michael Knoll
+ * @package Extlist
+ * @subpackage DataBackend\QueryModifier
  */
-class Tx_PtSolr_Domain_SearchResultInformation {
+class Tx_PtSolr_Extlist_DataBackend_QueryModifier_UserAccessGroupModifier extends Tx_PtSolr_Extlist_DataBackend_QueryModifier_AbstractQueryModifier {
 
-	/**
-	 * Numbers of results found
-	 *
-	 * @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend
-	 */
-	protected $solrDataBackend;
-
-
-
-	/**
-	 * Constructor injects solr data backend
-	 *
-	 * @param Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend
-	 */
-	public function __construct(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend) {
-		$this->solrDataBackend = $solrDataBackend;
-	}
+    /**
+     * Modifies given query due to functionality of current modifier
+     *
+     * This modifier sets user groups in given solr query. Each solr
+     * document has an access rootline and hence can be access-restricted
+     * via fe_groups.
+     *
+     * @param tx_solr_Query $solrQuery
+     * @return void
+     */
+    public function modifyQuery(tx_solr_Query $solrQuery) {
+        $solrQuery->setUserAccessGroups($this->getLoggedInUserGroupUids());
+    }
 
 
 
-	/**
-	 * Getter for current search phrase
-	 *
-	 * @return string
-	 */
-	public function getSearchPhrase() {
-		return $this->solrDataBackend->getSearchWords();
-	}
-
-
-
-	/**
-	 * Getter for total item count
-	 *
-	 * @return int
-	 */
-	public function getResultsCount() {
-		return $this->solrDataBackend->getTotalItemsCount();
-	}
-
+    /**
+     * Returns UID of user groups of currently logged in user
+     * 
+     * @return array
+     */
+    protected function getLoggedInUserGroupUids() {
+        return explode(',', $GLOBALS['TSFE']->gr_list);
+    }
+    
 }
 ?>
