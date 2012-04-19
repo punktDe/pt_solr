@@ -43,13 +43,6 @@ class Tx_PtSolr_Extlist_DataBackend_DataSource_SolrDataSource {
 
 
 
-    /**
-     * @var tx_solr_SolrService
-     */
-    protected $connection;
-
-
-
 	/**
 	 * Constructor for solr data source
 	 *
@@ -77,16 +70,6 @@ class Tx_PtSolr_Extlist_DataBackend_DataSource_SolrDataSource {
 		$response = $this->search->search($query, $offset, $limit);
         return $response;
 	}
-
-
-
-    /**
-     * @param tx_solr_SolrService $connection
-     * @return void
-     */
-    public function injectSolrConnection(tx_solr_SolrService $connection) {
-        $this->connection = $connection;
-    }
 
 
 

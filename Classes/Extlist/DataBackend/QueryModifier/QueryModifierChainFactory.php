@@ -34,18 +34,17 @@
  * @package Extlist
  * @subpackage DataBackend\QueryModifier
  */
-class Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierChainFactory {
+class Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierChainFactory implements t3lib_Singleton {
 
     /**
      * Returns instance of query modifier chain
      * 
-     * @static
      * @throws Exception
      * @param Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $dataBackend
      * @param array $queryModifierChainSettings
      * @return Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierChain
      */
-    public static function getInstance(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $dataBackend, array $queryModifierChainSettings) {
+    public function getInstance(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $dataBackend, array $queryModifierChainSettings) {
         $queryModifierChain = new Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierChain($queryModifierChainSettings);
         $queryModifierChain->injectDataBackend($dataBackend);
 
