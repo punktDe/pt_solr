@@ -28,6 +28,8 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
+
+
 // Configures FE plugins for this extension
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
@@ -49,5 +51,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
         'FacetFilter' => 'show, submit'
     )
 );
+
+
+
+// registering the eID script for auto-complete feature
+$TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_autocomplete'] = 'EXT:'.$_EXTKEY.'/Classes/Eid/AutoComplete.php';
 
 ?>
