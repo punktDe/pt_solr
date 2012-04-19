@@ -34,16 +34,7 @@
  * @author Daniel Lienert
  * @author Michael Knoll
  */
-class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter {
-
-    /**
-     * Singleton instance of this class
-	 *
-     * @var Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter
-     */
-    private static $instance = null;
-
-
+class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter implements t3lib_Singleton {
 
     /**
      * Holds objects for translating different types of criterias
@@ -51,22 +42,6 @@ class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter {
      * @var array<criteriaClassName => Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_TranslatorInterface>
      */
     protected $translatorObjects = array();
-
-
-
-    /**
-     * Factory method returns singleton instance of this class
-	 *
-     * @static
-     * @return Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter
-     */
-    public static function getInstance() {
-        if (self::$instance === null) {
-            self::$instance = new Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter();
-            self::initializeTranslators();
-        }
-        return self::$instance;
-    }
 
 
 

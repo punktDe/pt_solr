@@ -573,7 +573,10 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
     protected function initBackend() {
         // TODO although this is set in databackend factory we have to set it here again, as
         // factory is not capable of handling getInstance() method atm.
-        $this->queryInterpreter = Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter::getInstance();
+
+		$this->queryInterpreter = t3lib_div::makeInstance('Tx_Extbase_Object_Manager')->get('Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter');
+		#$this->queryInterpreter = Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter::getInstance();
+
 		$this->pagerCollection->setItemCount(PHP_INT_MAX);
     }
 
