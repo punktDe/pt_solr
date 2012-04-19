@@ -68,6 +68,10 @@ plugin.tx_ptextlist.settings.listConfig.solr {
             }
 
             30 {
+            	queryModifierClass = Tx_PtExtlistSolr_Domain_SolrDataBackend_QueryModifier_LimitModifier
+            }
+
+            40 {
                 queryModifierClass = Tx_PtExtlistSolr_Domain_SolrDataBackend_QueryModifier_UserAccessGroupModifier
             }
 
@@ -249,6 +253,7 @@ plugin.tx_ptextlist.settings.listConfig.solr {
                 delta = 3
             }
 
+            default < plugin.tx_ptextlist.settings.listConfig.solr.pager.pagerConfigs.delta
         }
 
     }
