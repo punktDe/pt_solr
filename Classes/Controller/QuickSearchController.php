@@ -52,7 +52,7 @@ class Tx_PtSolr_Controller_QuickSearchController extends Tx_PtSolr_Controller_Ab
     public function submitAction($filterValue='') {
         // Question: Is this really necessary?!?
         // TODO implement me!
-        return 'Given filter value: ' . $filterValue;
+        $this->forward('show');
     }
 
 }
