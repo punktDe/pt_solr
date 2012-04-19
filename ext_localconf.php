@@ -57,4 +57,9 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 // registering the eID script for auto-complete feature
 $TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_autocomplete'] = 'EXT:'.$_EXTKEY.'/Classes/Eid/AutoComplete.php';
 
+
+
+// registering the eID script for live-search feature
+$TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_livesearch'] = 'EXT:'.$_EXTKEY.'/Classes/Eid/LiveSearch.php';
+
 ?>
