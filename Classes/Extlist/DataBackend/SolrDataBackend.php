@@ -182,6 +182,33 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	 *************************************************************************************/
 
 	/**
+	 * Injects solr query interpreter
+	 *
+	 * @param Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter $queryInterpreter
+	 */
+	public function injectSolrQueryInterpreter(Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter $queryInterpreter) {
+		$this->queryInterpreter = $queryInterpreter;
+	}
+
+
+
+	/**
+	 * Dummy injector for query interpreter
+	 *
+	 * @param $queryInterpreter
+	 */
+	public function _injectQueryInterpreter($queryInterpreter) {
+		// Nothing to do here, since this method would overwrite queryInterpreter set by injectSolrQueryInterpreter
+		// TODO remove this method, once DI issues in pt_extlist have been resolved
+	}
+
+
+
+	/*************************************************************************************
+	 * Public methods
+	 *************************************************************************************/
+
+	/**
 	 * Returns the value of the searchwordFilter
 	 *
 	 * @throws Exception
@@ -571,12 +598,6 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
      * @return void
      */
     protected function initBackend() {
-        // TODO although this is set in databackend factory we have to set it here again, as
-        // factory is not capable of handling getInstance() method atm.
-
-		$this->queryInterpreter = t3lib_div::makeInstance('Tx_Extbase_Object_Manager')->get('Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter');
-		#$this->queryInterpreter = Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter::getInstance();
-
 		$this->pagerCollection->setItemCount(PHP_INT_MAX);
     }
 
