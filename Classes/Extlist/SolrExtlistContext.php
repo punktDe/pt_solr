@@ -46,7 +46,7 @@ class Tx_PtSolr_Extlist_SolrExtlistContext extends Tx_PtExtlist_ExtlistContext_E
 	/**
 	 * Holds instance of solr data backend
 	 *
-	 * @var Tx_PtExtlistSolr_Domain_SolrDataBackend_DataBackend
+	 * @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend
 	 */
 	protected $dataBackend;
 
