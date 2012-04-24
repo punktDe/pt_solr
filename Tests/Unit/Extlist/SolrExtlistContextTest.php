@@ -56,7 +56,7 @@ class Tx_PtSolr_Tests_Unit_Extlist_SolrExtlistContextTest extends Tx_PtSolr_Test
 	public function getSearchWordFilterIdentifierReturnsCorrectIdentifier() {
 		$searchWordFilterIdentifier = 'searchWordFilterIdentifier';
 		$dataBackendMock = $this->getMock(
-			'Tx_PtExtlistSolr_Domain_SolrDataBackend_DataBackend',
+			'Tx_PtSolr_Extlist_DataBackend_SolrDataBackend',
 			array('getSearchwordFilterIdentifier'),
 			array(),
 			'',
@@ -72,7 +72,7 @@ class Tx_PtSolr_Tests_Unit_Extlist_SolrExtlistContextTest extends Tx_PtSolr_Test
 	/** @test */
 	public function getSearchWordFilterReturnsSearchWordFilter() {
 		$dataBackendMock = $this->getMock(
-			'Tx_PtExtlistSolr_Domain_SolrDataBackend_DataBackend',
+			'Tx_PtSolr_Extlist_DataBackend_SolrDataBackend',
 			array('getSearchwordFilter'),
 			array(),
 			'',

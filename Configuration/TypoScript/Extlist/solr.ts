@@ -31,7 +31,7 @@ plugin.tx_ptextlist.settings.listConfig.solr {
     ######################################################
     # Backend configuration for solr
     ######################################################
-    backendConfig < plugin.tx_ptextlist.prototype.backend.solr
+    #backendConfig < plugin.tx_ptextlist.prototype.backend.solr
     backendConfig {
 
     	dataBackendClass = Tx_PtSolr_Extlist_DataBackend_SolrDataBackend
@@ -47,6 +47,10 @@ plugin.tx_ptextlist.settings.listConfig.solr {
 
 
         dataMapperClass = Tx_PtSolr_Extlist_DataBackend_DataMapper_SolrDataMapper
+
+
+
+        queryInterpreterClass = Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter
 
 
 

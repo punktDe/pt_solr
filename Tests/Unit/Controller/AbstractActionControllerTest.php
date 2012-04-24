@@ -100,7 +100,7 @@ class Tx_PtSolr_Tests_Unit_Controller_AbstractActionControllerTest extends Tx_Pt
 		$renderedListDataMock = $this->getMock('Tx_PtExtlist_Domain_Model_List_ListData');
 		$pagerMock = $this->getMock('Tx_PtExtlist_Domain_Model_Pager_PagerInterface');
 		$pagerCollectionMock = $this->getMock('Tx_PtExtlist_Domain_Model_Pager_PagerCollection', array(), array(), '', FALSE);
-		$dataBackendMock = $this->getMock('Tx_PtExtlistSolr_Domain_SolrDataBackend_DataBackend', array(), array(), '', FALSE);
+		$dataBackendMock = $this->getMock('Tx_PtSolr_Extlist_DataBackend_SolrDataBackend', array(), array(), '', FALSE);
 		$solrExtlistContextMock = $this->getMock(
 			'Tx_PtSolr_Extlist_SolrExtlistContext',
 			array('getSearchwordFilter', 'getRenderedListData', 'getPager', 'getPagerCollection', 'getDataBackend'),

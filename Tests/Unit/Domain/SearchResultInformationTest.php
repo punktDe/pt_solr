@@ -38,7 +38,7 @@ class Tx_PtSolr_Tests_Unit_Domain_SearchResultInformationTest extends Tx_PtSolr_
 	/** @test */
 	public function getSearchPhraseReturnsCurrentSearchPhrase() {
 		$dataBackendMock = $this->getMock(
-			'Tx_PtExtlistSolr_Domain_SolrDataBackend_DataBackend',
+			'Tx_PtSolr_Extlist_DataBackend_SolrDataBackend',
 			array('getSearchWords'),
 			array(),
 			'',
@@ -57,7 +57,7 @@ class Tx_PtSolr_Tests_Unit_Domain_SearchResultInformationTest extends Tx_PtSolr_
 	/** @test */
 	public function getResultsCountReturnsCurrentResultCount() {
 		$dataBackendMock = $this->getMock(
-			'Tx_PtExtlistSolr_Domain_SolrDataBackend_DataBackend',
+			'Tx_PtSolr_Extlist_DataBackend_SolrDataBackend',
 			array('getTotalItemsCount'),
 			array(),
 			'',
