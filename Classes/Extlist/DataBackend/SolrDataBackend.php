@@ -304,7 +304,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 			// TODO Add parameter whether to respect other filters or not
 			// TODO Use parameter object that is passed to modifier chain to enable further settings
 			$facetSearchWord = $this->getSearchPhraseForFacetSearch();
-			$facetQuery = new Tx_PtExtlistSolr_Domain_Model_Query($facetSearchWord);
+			$facetQuery = new Tx_PtSolr_Domain_Model_SolrQuery($facetSearchWord);
 
 			$this->facetQueryModifierChain->modifyQuery($facetQuery);
 
@@ -391,7 +391,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 		// facet.field={!key="filterbox1.filter1"}type&facet=on&facet.field={!key="filterbox1.filter2"}pid
 
 		$facetSearchWord = $this->getSearchPhraseForFacetSearch();
-		$facetQuery = new Tx_PtExtlistSolr_Domain_Model_Query($facetSearchWord);
+		$facetQuery = new Tx_PtSolr_Domain_Model_SolrQuery($facetSearchWord);
 
 		$facetQuery->setFaceting(TRUE);
 		foreach ($this->facetQueryParameters as $fullQualifiedFilterIdentifier => $facetParams) {
