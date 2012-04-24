@@ -46,6 +46,10 @@ plugin.tx_ptextlist.settings.listConfig.solr {
 
 
 
+        dataMapperClass = Tx_PtSolr_Extlist_DataBackend_DataMapper_SolrDataMapper
+
+
+
         ######################################################
         # Sorting for reslut list
         #
