@@ -58,7 +58,7 @@ class Tx_PtSolr_Extlist_DataBackend_DataMapper_SolrDataMapper extends Tx_PtExtli
 	 */
 	public function getMappedListData(array $responseDocuments = array()) {
 		// We use solr list data object here
-		$listData = new Tx_PtExtlistSolr_Domain_Model_List_ListData();
+		$listData = new Tx_PtSolr_Extlist_Model_ListData();
 		#$listData = new Tx_PtExtlist_Domain_Model_List_ListData();
 
 		foreach ($responseDocuments as $responseDocument) { /* @var $responseDocument Apache_Solr_Document */

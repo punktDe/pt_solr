@@ -644,7 +644,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
     protected function buildListData() {
 		// Check whether we have empty searchword and want to do solr query then.
 		if ($this->getSearchWords() === '' && !$this->doWeSearchOnEmptySubmit()) {
-			return new Tx_PtExtlistSolr_Domain_Model_List_ListData();
+			return new Tx_PtSolr_Extlist_Model_ListData();
 		}
 
         if ($this->response === null) {

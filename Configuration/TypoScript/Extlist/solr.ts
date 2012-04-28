@@ -3,9 +3,10 @@
 # with pt_extlist
 #
 # @author Michael Knoll <knoll@punkt.de>
-# @package Typo3
-# @subpackage pt_solr
+# @package pt_solr
 ####################################################
+
+plugin.tx_ptsolr.mvc.callDefaultActionIfActionCantBeResolved = 1
 
 
 
@@ -42,7 +43,7 @@ plugin.tx_ptextlist.settings.listConfig.solr {
 
 
 
-        doSearchOnEmptySearchWord = 0
+        doSearchOnEmptySearchWord = 1
 
 
 
@@ -118,8 +119,122 @@ plugin.tx_ptextlist.settings.listConfig.solr {
     # Field names must correspond to field names
     # set in solr schema file.
     ######################################################
-    fields < plugin.tx_ptextlist.prototype.fields.solr
 
+    fields {
+
+        # Document Id
+        id {
+            table = __none__
+            field = id
+        }
+
+        # Id of the page
+        uid {
+            table = __none__
+            field = uid
+        }
+
+        pid {
+            table = __none__
+            field = pid
+        }
+
+        created {
+            table = __none__
+            field = created
+        }
+
+        changed {
+            table = __none__
+            field = changed
+        }
+
+        language {
+            table = __none__
+            field = language
+        }
+
+        access {
+            table = __none__
+            field = access
+        }
+
+        title {
+            table = __none__
+            field = title
+        }
+
+        author {
+            table = __none__
+            field = author
+        }
+
+        description {
+            table = __none__
+            field = description
+        }
+
+        abstract {
+            table = __none__
+            field = abstract
+        }
+
+        site {
+            table = __none__
+            field = site
+        }
+
+        content {
+            table = __none__
+            field = content
+        }
+
+        score {
+            table = __none__
+            field = score
+        }
+
+        rootline {
+            table = __none__
+            field = rootline
+        }
+
+        type {
+            table = __none__
+            field = type
+        }
+
+        url {
+            table = __none__
+            field = url
+        }
+
+        abstract {
+            table = __none__
+            field = abstract
+        }
+
+        teaser {
+            table = __none__
+            field = teaser
+        }
+
+        fileExtension {
+            table = __none__
+            field = fileExtension
+        }
+
+        starttime {
+            table = __none__
+            field = starttime
+        }
+
+        endtime {
+            table = __none__
+            field = endtime
+        }
+
+    }
 
 
     ######################################################
