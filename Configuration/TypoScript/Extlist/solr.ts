@@ -39,6 +39,16 @@ plugin.tx_ptextlist.settings.listConfig.solr {
 
 
 
+    	# TODO remove this, once DI issues in pt_extlist have been resolved!
+    	# Data source is injected via standard DI in solr backend, but we still
+    	# have assertions in pt_extlist to check, whether class is set in configuration
+    	#
+    	# ATTENTION This setting WON'T have any effect on the actual data source class
+    	# used for this backend!
+    	dataSourceClass = Tx_PtSolr_Extlist_DataBackend_DataSource_SolrDataSource
+
+
+
         searchWordFilter = searchWordFilterbox.searchWordFilter
 
 
