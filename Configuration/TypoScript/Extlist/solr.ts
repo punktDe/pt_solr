@@ -65,6 +65,35 @@ plugin.tx_ptextlist.settings.listConfig.solr {
 
 
 
+        # Make sure to have Tx_PtSolr_Extlist_DataBackend_QueryModifier_HighlightingModifier set as query modifier
+        # in your query modifier chain to make this working!
+        highlighting {
+
+            # If set to 1, highlighting will be enabled
+            enable = 1
+
+            # Settings here correnspond 1:1 to the possible settings in http://wiki.apache.org/solr/HighlightingParameters
+            hl {
+                # Restrict highlighting to certain fields or use '*' to highlight them all
+                fl = content
+                # Highlighting results in solr are given in its own list. Here you can adjust the length of this list (how many results for highlighting should be returned?)
+                snippets = 1
+                # Here you can set the length of a highlighting snippet that is returned in response->highlighting
+                fragsize = 100
+            }
+
+            # Set tags to be used for highlighting
+            simple_pre = <strong>
+            simple_post = </strong>
+
+            # If set to true, hl.q parameter will be overwritten with original searchword.
+            # This can be useful, if we manipulate q in such a way, that it is no longer useful
+            # for highlighting.
+            useOriginalSearchWordForHighlighting = 1
+        }
+
+
+
         ######################################################
         # Sorting for reslut list
         #
@@ -96,6 +125,10 @@ plugin.tx_ptextlist.settings.listConfig.solr {
 
             40 {
                 queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_UserAccessGroupModifier
+            }
+
+            50 {
+                queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_HighlightingModifier
             }
 
         }

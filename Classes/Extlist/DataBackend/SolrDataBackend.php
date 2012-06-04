@@ -141,6 +141,13 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 
 
 
+	/**
+	 * @var Apache_Solr_Response
+	 */
+	protected $highlightedDocuments = null;
+
+
+
     /**
      * Holds instance of solr query interpreter
      *
@@ -653,6 +660,12 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 
         $responseDocuments =  $this->response->response->docs;
 
+		// Put results of highlighting into document responses
+		if ($this->highlightingIsEnabled() && $this->response->highlighting !== NULL) {
+			$this->highlightedDocuments = $this->response->highlighting;
+			$this->mergeResponseDocumentsWithHighlighting($responseDocuments);
+		}
+
 		// TODO: return solr query for debugging (this can be done in tx_solr_Service class)
 		Tx_PtExtbase_Assertions_Assert::isArray($responseDocuments, array('message' => 'solr request did not return an array. Seems like there is an error in your solr query! 1326296106'));
 
@@ -672,6 +685,41 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 		}
 
     }
+
+
+
+	/**
+	 * Returns true, if solr highlighting is enabled in TypoScript settings
+	 */
+	public function highlightingIsEnabled() {
+		$highlightSettings = $this->backendConfiguration->getSettings('highlighting');
+		if ($highlightSettings['enable'] == 1) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+
+
+	/**
+	 * When we do highlighting, the highlighting results are put in a separate section
+	 * of the solr response xml. We then have to merge documents with highlighting results
+	 *
+	 * @param $responseDocuments
+	 */
+	protected function mergeResponseDocumentsWithHighlighting(&$responseDocuments) {
+		foreach($responseDocuments as $responseDocument) {
+			if ($this->highlightedDocuments->{$responseDocument->id}->content[0]) {
+				$responseDocument->content = tx_solr_Util::utf8Decode(
+					$this->highlightedDocuments->{$responseDocument->id}->content[0]
+				);
+				$responseDocument->teaser = tx_solr_Util::utf8Decode(
+					$this->highlightedDocuments->{$responseDocument->id}->content[0]
+				);
+			}
+		}
+	}
 
 
 
