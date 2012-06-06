@@ -36,6 +36,22 @@
  */
 class Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierChainFactory implements t3lib_Singleton {
 
+	/**
+	 * @var Tx_Extbase_Object_Manager
+	 */
+	private $objectManager;
+
+
+
+	/**
+	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 */
+	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+		$this->objectManager = $objectManager;
+	}
+
+
+
     /**
      * Returns instance of query modifier chain
      * 
@@ -46,18 +62,20 @@ class Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierChainFactory impl
      */
     public function getInstance(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $dataBackend, array $queryModifierChainSettings) {
         $queryModifierChain = new Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierChain($queryModifierChainSettings);
-        $queryModifierChain->injectDataBackend($dataBackend);
+        $queryModifierChain->_injectDataBackend($dataBackend);
 
         foreach ($queryModifierChainSettings as $order => $queryModifierConfiguration) {
             $queryModifierClassName = $queryModifierConfiguration['queryModifierClass'];
             if (!class_exists($queryModifierClassName)) {
                 throw new Exception('Query modifier class "' . $queryModifierClassName . '" set in TS settings does not exist! 1320388590');
             }
-            $queryModifier = new $queryModifierClassName; /* @var $queryModifier Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierInterface */
+
+			$queryModifier = $this->objectManager->get($queryModifierClassName);
+            // $queryModifier = new $queryModifierClassName; /* @var $queryModifier Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierInterface */
             if (!is_a($queryModifier, 'Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierInterface')) {
                 throw new Exception('Query modifier class ' . $queryModifierClassName . ' does not implement required interface Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierInterface! 1320388591');
             }
-            $queryModifier->injectDataBackend($dataBackend);
+            $queryModifier->_injectDataBackend($dataBackend);
             $queryModifierChain->addModifier($queryModifier);
         }
         return $queryModifierChain;

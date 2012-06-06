@@ -596,7 +596,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	 * @return void
 	 */
 	protected function setUpFacetQueryModifierChain() {
-		$this->facetQueryModifierChain = Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierChainFactory::getInstance($this, $this->backendConfiguration->getDataBackendSettings('facetQueryModifierChain'));
+		$this->facetQueryModifierChain = $this->queryModifierChainFactory->getInstance($this, $this->backendConfiguration->getDataBackendSettings('facetQueryModifierChain'));
 	}
 
 
