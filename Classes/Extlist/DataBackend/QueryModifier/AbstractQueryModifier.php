@@ -47,11 +47,13 @@ abstract class Tx_PtSolr_Extlist_DataBackend_QueryModifier_AbstractQueryModifier
 
     /**
      * Injector for solr data backend
+	 *
+	 * TODO remove '_' in method name as soon as DI issues are resolved
      *
      * @param Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend
      * @return void
      */
-    public function injectDataBackend(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend) {
+    public function _injectDataBackend(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend) {
         $this->dataBackend = $solrDataBackend;
     }
 
