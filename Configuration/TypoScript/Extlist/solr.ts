@@ -57,6 +57,10 @@ plugin.tx_ptextlist.settings.listConfig.solr {
 
 
 
+        wildcardSearchIsAllowed = 0
+
+
+
         dataMapperClass = Tx_PtSolr_Extlist_DataBackend_DataMapper_SolrDataMapper
 
 

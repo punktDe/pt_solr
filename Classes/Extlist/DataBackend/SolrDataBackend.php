@@ -445,6 +445,19 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	 * @return int Total number of items for current data set
 	 */
 	public function getTotalItemsCount() {
+
+		// TODO refactor me: We check twice, whether we search on empty submit and * here!
+
+		// Check whether we have empty searchword and want to do solr query then.
+		if ($this->getSearchWords() === '' && !$this->doWeSearchOnEmptySubmit()) {
+			return 0;
+		}
+
+		// Check whether '*' is allowed as searchphrase
+		if (($this->getSearchWords() === '*' || $this->getSearchWords() === '*:*') && !$this->wildcardSearchIsAllowed()) {
+			return 0;
+		}
+
 		if ($this->response === null){
 			$this->doSearch();
 		}
@@ -654,6 +667,11 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 			return new Tx_PtSolr_Extlist_Model_ListData();
 		}
 
+		// Check whether '*' is allowed as searchphrase
+		if (($this->getSearchWords() === '*' || $this->getSearchWords() === '*:*') && !$this->wildcardSearchIsAllowed()) {
+			return new Tx_PtSolr_Extlist_Model_ListData();
+		}
+
         if ($this->response === null) {
             $this->doSearch();
         }
@@ -794,7 +812,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	 * @return bool
 	 */
 	protected function doWeSearchOnEmptySubmit() {
-		$searchOnEmptySearchWord = $this->backendConfiguration->getDataBackendSettings('searchOnEmptySearchWord');
+		$searchOnEmptySearchWord = $this->backendConfiguration->getDataBackendSettings('doSearchOnEmptySearchWord');
 		if ($searchOnEmptySearchWord === '1') {
 			return true;
 		} else {
@@ -802,6 +820,23 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 		}
 	}
 
+
+
+	/**
+	 * Returns true, if wildcard search is allowed in TS settings
+	 *
+	 * Wildcard search is '*' or '*:*'
+	 *
+	 * @return bool
+	 */
+	protected function wildcardSearchIsAllowed() {
+		$wildcardIsAllowed = $this->backendConfiguration->getDataBackendSettings('wildcardSearchIsAllowed');
+		if ($wildcardIsAllowed === '1') {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
 
 
 
