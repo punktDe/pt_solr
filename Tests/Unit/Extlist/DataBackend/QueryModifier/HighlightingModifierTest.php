@@ -62,6 +62,7 @@ class Tx_PtSolr_Tests_Unit_Extlist_DataBackend_QueryModifier_HighlightingModifie
 
 	/** @test */
 	public function modifierSetsParametersOnSolrQueryAsExpected() {
+		$this->markTestSkipped('This test is skipped until TODO in Tx_PtSolr_Extlist_DataBackend_QueryModifier_AbstractQueryModifier is removed');
 		$dataBackendMock = $this->getDataBackendMockWithTsFakeSettings();
 
 		$setParams = array();
