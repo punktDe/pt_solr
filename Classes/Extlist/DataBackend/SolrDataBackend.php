@@ -930,5 +930,13 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 		return $facetCounts;
 	}
 
+	/**
+	 * @return Tx_PtExtlist_Domain_Model_List_IterationListData|void
+	 * @throws Exception
+	 */
+	public function getIterationListData() {
+		throw new Exception('IterationListData mode can not be used with the solr backend!', 1349875196);
+	}
+
 }
 ?>
