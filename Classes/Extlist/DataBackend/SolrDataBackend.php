@@ -730,12 +730,12 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	protected function mergeResponseDocumentsWithHighlighting(&$responseDocuments) {
 		foreach($responseDocuments as $responseDocument) {
 			if ($this->highlightedDocuments->{$responseDocument->id}->content[0]) {
-				$responseDocument->content = tx_solr_Util::utf8Decode(
-					$this->highlightedDocuments->{$responseDocument->id}->content[0]
-				);
-				$responseDocument->teaser = tx_solr_Util::utf8Decode(
-					$this->highlightedDocuments->{$responseDocument->id}->content[0]
-				);
+				$responseDocument->content = #tx_solr_Util::utf8Decode(
+					$this->highlightedDocuments->{$responseDocument->id}->content[0];
+				#);
+				$responseDocument->teaser = #tx_solr_Util::utf8Decode(
+					$this->highlightedDocuments->{$responseDocument->id}->content[0];
+				#);
 			}
 		}
 	}
