@@ -86,7 +86,7 @@ class Tx_PtSolr_Extlist_SolrExtlistContextFactory extends Tx_PtExtlist_ExtlistCo
 	protected static function buildContext(Tx_PtExtlist_Domain_DataBackend_DataBackendInterface $dataBackend) {
 		$extlistContext = new Tx_PtSolr_Extlist_SolrExtlistContext();
 
-		$extlistContext->injectDataBackend($dataBackend);
+		$extlistContext->_injectDataBackend($dataBackend);
 		$extlistContext->init();
 
 		return $extlistContext;
