@@ -63,8 +63,12 @@ class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator im
 	 */
 	public function translateCriteria(Tx_PtExtlist_Domain_QueryObject_Criteria $criteria) {
         $operator = $criteria->getOperator();
-		// TODO at the moment, we get table.field for fields - we don't want to have that here...
-		list($table, $field) = explode('.', $criteria->getField());
+		if (strpos($criteria->getField(), '.')) {
+			// TODO at the moment, we get table.field for fields - we don't want to have that here...
+			list($table, $field) = explode('.', $criteria->getField());
+		} else {
+			$field = $criteria->getField();
+		}
 		$value = $criteria->getValue();
 
         switch ($operator) {

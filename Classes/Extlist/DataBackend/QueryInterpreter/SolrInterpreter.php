@@ -51,18 +51,18 @@ class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter implements 
      * @static
      * @return void
      */
-    protected static function initializeTranslators() {
-        self::$instance->setTranslatorForCriteriaClass('Tx_PtExtlist_Domain_QueryObject_SimpleCriteria', new Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator());
+    public function initializeTranslators() {
+        $this->setTranslatorForCriteriaClass('Tx_PtExtlist_Domain_QueryObject_SimpleCriteria', new Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator());
 
 		$andCriteriaTranslator = new Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_AndCriteriaTranslator();
-		$andCriteriaTranslator->injectSolrInterpreter(self::$instance);
-		self::$instance->setTranslatorForCriteriaClass('Tx_PtExtlist_Domain_QueryObject_AndCriteria',    $andCriteriaTranslator);
+		$andCriteriaTranslator->injectSolrInterpreter($this);
+		$this->setTranslatorForCriteriaClass('Tx_PtExtlist_Domain_QueryObject_AndCriteria',    $andCriteriaTranslator);
 
 		$orCriteriaTranslator = new Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_OrCriteriaTranslator();
-		$orCriteriaTranslator->injectSolrInterpreter(self::$instance);
-		self::$instance->setTranslatorForCriteriaClass('Tx_PtExtlist_Domain_QueryObject_OrCriteria',    $orCriteriaTranslator);
+		$orCriteriaTranslator->injectSolrInterpreter($this);
+		$this->setTranslatorForCriteriaClass('Tx_PtExtlist_Domain_QueryObject_OrCriteria',    $orCriteriaTranslator);
 
-		self::$instance->setTranslatorForCriteriaClass('Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_RawSolrCriteria', new Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_RawSolrCriteriaTranslator());
+		$this->setTranslatorForCriteriaClass('Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_RawSolrCriteria', new Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_RawSolrCriteriaTranslator());
     }
 
 
@@ -126,4 +126,3 @@ class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter implements 
     }
 
 }
-?>

@@ -72,8 +72,11 @@ class Tx_PtSolr_Extlist_DataBackend_QueryModifier_FilterModifier extends Tx_PtSo
     protected function setAllFilterCriteriasFromFilterboxOnSolrQuery(tx_solr_Query $solrQuery, Tx_PtExtlist_Domain_Model_Filter_Filterbox $filterbox) {
         foreach ($filterbox as $filter) { /* @var $filter Tx_PtExtlist_Domain_Model_Filter_FilterInterface */
             if ($this->filterIsNotSearchwordFilterOfDataBackend($filter) && $this->filterIsNotToBeIgnored($filter)) {
-                $translatedFilterString = $this->dataBackend->getQueryInterpreter()->translateCriterias($filter->getFilterQuery()->getCriterias());
-                $solrQuery->addFilter($translatedFilterString);
+				$criterias = $filter->getFilterQuery()->getCriterias();
+                $translatedFilterString = $this->dataBackend->getQueryInterpreter()->translateCriterias($criterias);
+				if ($translatedFilterString !== '') {
+                	$solrQuery->addFilter($translatedFilterString);
+				}
             }
         }
     }
@@ -101,7 +104,11 @@ class Tx_PtSolr_Extlist_DataBackend_QueryModifier_FilterModifier extends Tx_PtSo
 	 */
 	protected function filterIsNotToBeIgnored(Tx_PtExtlist_Domain_Model_Filter_FilterInterface $filter) {
 		$fullQualifiedFilterName = $filter->getFilterBoxIdentifier() . '.' . $filter->getFilterIdentifier();
-		return !(in_array($fullQualifiedFilterName, $this->dataBackend->getFiltersToBeIgnored()));
+		if (method_exists($this->dataBackend, 'getFiltersToBeIgnored')) {
+			return !(in_array($fullQualifiedFilterName, $this->dataBackend->getFiltersToBeIgnored()));
+		} else {
+			return TRUE;
+		}
 	}
     
 }

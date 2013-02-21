@@ -32,9 +32,8 @@
  *
  * @author Michael Knoll
  * @package Domain
- * @subpackage Model
  */
-class Tx_PtSolr_Domain_Model_SolrQuery extends tx_solr_Query {
+class Tx_PtSolr_Domain_SolrQuery extends tx_solr_Query {
 
     /**
      * Constructor for query
@@ -78,4 +77,3 @@ class Tx_PtSolr_Domain_Model_SolrQuery extends tx_solr_Query {
     }
 
 }
-?>

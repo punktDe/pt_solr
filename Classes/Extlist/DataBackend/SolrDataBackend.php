@@ -214,8 +214,9 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	 * @param $queryInterpreter
 	 */
 	public function _injectQueryInterpreter($queryInterpreter) {
-		// Nothing to do here, since this method would overwrite queryInterpreter set by injectSolrQueryInterpreter
-		// TODO remove this method, once DI issues in pt_extlist have been resolved
+		Tx_PtExtbase_Assertions_Assert::isA($queryInterpreter, 'Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter', array('message' => 'Injected query interpreter needs to be a Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SolrInterpreter. 1361358458'));
+		parent::_injectQueryInterpreter($queryInterpreter);
+		$this->queryInterpreter->initializeTranslators();
 	}
 
 
@@ -312,7 +313,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 			// TODO Add parameter whether to respect other filters or not
 			// TODO Use parameter object that is passed to modifier chain to enable further settings
 			$facetSearchWord = $this->getSearchPhraseForFacetSearch();
-			$facetQuery = new Tx_PtSolr_Domain_Model_SolrQuery($facetSearchWord);
+			$facetQuery = new Tx_PtSolr_Domain_SolrQuery($facetSearchWord);
 
 			$this->facetQueryModifierChain->modifyQuery($facetQuery);
 
@@ -325,7 +326,15 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 			self::$solrSearchTime += ($timeAfter - $timeBefore);
 
 			if (self::DEBUG) {
-				echo "required search time: " . self::$solrSearchTime;
+				echo "Settings for doSearch in solr DataBackend:<pre>";
+				var_dump(
+					array(
+						'queryString' => $facetQuery->getQueryString(),
+						'queryParameters' => $facetQuery->getQueryParameters(),
+						'sorting' => $facetQuery->getSortingFields()
+					)
+				);
+				echo "</pre>";
 			}
 
 			// TODO: solrObject can be accessed via array-syntax - @see http://www.php.net/manual/en/class.solrobject.php
@@ -399,7 +408,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 		// facet.field={!key="filterbox1.filter1"}type&facet=on&facet.field={!key="filterbox1.filter2"}pid
 
 		$facetSearchWord = $this->getSearchPhraseForFacetSearch();
-		$facetQuery = new Tx_PtSolr_Domain_Model_SolrQuery($facetSearchWord);
+		$facetQuery = new Tx_PtSolr_Domain_SolrQuery($facetSearchWord);
 
 		$facetQuery->setFaceting(TRUE);
 		foreach ($this->facetQueryParameters as $fullQualifiedFilterIdentifier => $facetParams) {

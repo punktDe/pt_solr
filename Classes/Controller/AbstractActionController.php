@@ -130,7 +130,7 @@ class Tx_PtSolr_Controller_AbstractActionController extends Tx_PtExtbase_Control
 		$this->view->assign('pager', $this->solrExtlistContext->getPager('delta'));
 		$this->view->assign('pagerCollection', $this->solrExtlistContext->getPagerCollection());
 		$this->view->assign('searchResultInformation', new Tx_PtSolr_Domain_SearchResultInformation($this->solrExtlistContext->getDataBackend()));
+		$this->view->assign('solrExtlistContext', $this->solrExtlistContext);
 	}
 
 }
-?>
