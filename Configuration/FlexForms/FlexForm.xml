@@ -48,7 +48,7 @@
                   </numIndex>
                   <numIndex index="3" type="array">
                     <numIndex index="0">Searchword Filter</numIndex>
-                    <numIndex index="1">SearchWordFilter->show;SearchWordFilter->submit;QuickSearch->submit</numIndex>
+                    <numIndex index="1">SearchWordFilter->show;SearchWordFilter->submit;SearchWordFilter->reset;QuickSearch->submit</numIndex>
                   </numIndex>
                   <numIndex index="4" type="array">
                     <numIndex index="0">Pager</numIndex>

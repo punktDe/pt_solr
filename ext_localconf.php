@@ -36,7 +36,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Pi1',
 	array(
 		'ResultList' => 'list',
-        'SearchWordFilter' => 'show, submit',
+        'SearchWordFilter' => 'show, submit, reset',
         'BreadCrumbs' => 'show',
         'QuickSearch' => 'show, submit',
         'Pager' => 'show',
@@ -44,7 +44,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	),
     array(
         'ResultList' => 'list',
-        'SearchWordFilter' => 'show, submit',
+        'SearchWordFilter' => 'show, submit, reset',
         'BreadCrumbs' => 'show',
         'QuickSearch' => 'show, submit',
         'Pager' => 'show',

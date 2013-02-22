@@ -53,8 +53,20 @@ class Tx_PtSolr_Controller_SearchWordFilterController extends Tx_PtSolr_Controll
      */
     public function submitAction() {
         $this->solrExtlistContext->resetPagerCollection();
-		$this->forward('show');
+		// TODO prevent redirect here
+		$this->redirect('show');
     }
 
+
+
+	/**
+	 * Resets the filters and the pagers
+	 */
+	public function resetAction() {
+		$this->solrExtlistContext->resetPagerCollection();
+		$this->solrExtlistContext->resetFilterboxCollection();
+		// TODO prevent redirect here
+		$this->redirect('show');
+	}
+
 }
-?>
