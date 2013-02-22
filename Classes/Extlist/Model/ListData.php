@@ -150,7 +150,7 @@ class Tx_PtSolr_Extlist_Model_ListData extends Tx_PtExtlist_Domain_Model_List_Li
 	 * about "special" data stored in this object, so we have to create a
 	 * object-specific method to copy this data from the old list data to the new list data.
 	 *
-	 * @param Tx_PtExtlistSolr_Domain_Model_List_ListData $listDataToCopyDataFrom
+	 * @param Tx_PtSolr_Extlist_Model_ListData $listDataToCopyDataFrom
 	 */
 	public function copyListData(Tx_PtSolr_Extlist_Model_ListData $listDataToCopyDataFrom) {
 		$this->setTotalItemCount($listDataToCopyDataFrom->getTotalItemCount());

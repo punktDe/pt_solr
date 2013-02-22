@@ -169,7 +169,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	/**
 	 * Holds solr data mapper
 	 *
-	 * @var Tx_PtExtlistSolr_Domain_SolrDataBackend_SolrMapper_SolrResponseMapper
+	 * @var Tx_PtSolr_Extlist_DataBackend_DataMapper_SolrDataMapper
 	 */
 	protected $dataMapper;
 
@@ -698,7 +698,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 		Tx_PtExtbase_Assertions_Assert::isArray($responseDocuments, array('message' => 'solr request did not return an array. Seems like there is an error in your solr query! 1326296106'));
 
 		try {
-			$listData = $this->dataMapper->getMappedListData($responseDocuments); /* @var $listData Tx_PtExtlistSolr_Domain_Model_List_ListData */
+			$listData = $this->dataMapper->getMappedListData($responseDocuments); /* @var $listData Tx_PtExtlist_Domain_Model_List_ListData */
 			$listData->setTotalItemCount($this->response->response->numFound);
 			$listData->setSearchWord($this->searchWordFilter->getValue());
 
