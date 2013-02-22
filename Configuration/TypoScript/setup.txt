@@ -11,6 +11,10 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist_solr/Configuration/TypoScript/BaseConfig/BaseConfig.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:solr/static/solr/setup.txt">
 
+## ATTENTION!!! We get all the solr configuration here - including indexing configuration. Remember to reset this in
+## your depending extension if you do not want to have this using
+##
+## plugin.tx_solr.index >
 
 
 ## Inclusion of pt_solr's TypoScript resources
