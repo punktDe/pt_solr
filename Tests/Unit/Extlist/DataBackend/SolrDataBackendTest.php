@@ -37,15 +37,18 @@ class Tx_PtSolr_Tests_Unit_Extlist_DataBackend_SolrDataBackendTest extends Tx_Pt
 
 	/**
 	 * @test
-	 * @expectedException Exception
-	 * @expectedExceptionMessage IterationListData mode can not be used
 	 */
 	public function methodGetIterationListDataThrowsException() {
-		$solrDataBackendMock = $this->getMockBuilder('Tx_PtSolr_Extlist_DataBackend_SolrDataBackend') /** @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackendMock */
-				->setMethods(array('dummy'))
-				->disableOriginalConstructor()
-				->getMock();
-		$solrDataBackendMock->getIterationListData();
+		try {
+			$solrDataBackendMock = $this->getMockBuilder('Tx_PtSolr_Extlist_DataBackend_SolrDataBackend') /** @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackendMock */
+					->setMethods(array('dummy'))
+					->disableOriginalConstructor()
+					->getMock();
+			$solrDataBackendMock->getIterationListData();
+		} catch (Exception $e) {
+			return;
+		}
+		$this->fail('No exception has been thrown when trying to get iteration list data from solr data backend.');
 	}
 
 }
