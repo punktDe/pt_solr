@@ -63,7 +63,7 @@ class Tx_PtSolr_Tests_Unit_Extlist_SolrExtlistContextTest extends Tx_PtSolr_Test
 			FALSE
 		);
 		$dataBackendMock->expects($this->once())->method('getSearchwordFilterIdentifier')->will($this->returnValue($searchWordFilterIdentifier));
-		$this->solrExtlistContext->injectDataBackend($dataBackendMock);
+		$this->solrExtlistContext->_injectDataBackend($dataBackendMock);
 		$this->assertEquals($this->solrExtlistContext->getSearchWordFilterIdentifier(), $searchWordFilterIdentifier);
 	}
 
@@ -80,7 +80,7 @@ class Tx_PtSolr_Tests_Unit_Extlist_SolrExtlistContextTest extends Tx_PtSolr_Test
 		);
 		$filterMock = $this->getMock('Tx_PtExtlist_Domain_Model_Filter_FilterInterface');
 		$dataBackendMock->expects($this->once())->method('getSearchwordFilter')->will($this->returnValue($filterMock));
-		$this->solrExtlistContext->injectDataBackend($dataBackendMock);
+		$this->solrExtlistContext->_injectDataBackend($dataBackendMock);
 		$this->assertEquals($this->solrExtlistContext->getSearchWordFilter(), $filterMock);
 	}
 
