@@ -76,4 +76,23 @@ class Tx_PtSolr_Domain_SolrQuery extends tx_solr_Query {
         }
     }
 
+
+
+	/**
+	 * Escapes characters with special meanings in Lucene query syntax.
+	 *
+	 * @param	string	$value Unescaped - "dirty" - string
+	 * @return	string	Escaped - "clean" - string
+	 */
+	protected function escapeSpecialCharacters($value) {
+			// list taken from http://lucene.apache.org/java/3_3_0/queryparsersyntax.html#Escaping%20Special%20Characters
+			// not escaping *, &&, ||, ?, -, !, + though
+
+		//$pattern = '/(\(|\)|\{|}|\[|]|\^|"|~|:|\\\)/'; // this is the original pattern in tx_solr
+		$pattern = '/(\(|\)|\{|}|\[|]|\^|~|:|\\\)/'; // Removed " from the pattern to enable "..." exact queries
+		$replace = '\\\$1';
+
+		return preg_replace($pattern, $replace, $value);
+	}
+
 }

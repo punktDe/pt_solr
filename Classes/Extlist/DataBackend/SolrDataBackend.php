@@ -39,6 +39,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 
 	/**
 	 * If set to true, some additional debug information will be output
+	 * TODO make this configurable via TS
 	 */
 	const DEBUG = FALSE;
 
@@ -194,7 +195,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 
 
 	/*************************************************************************************
-	 * Public methods
+	 * Injection methods
 	 *************************************************************************************/
 
 	/**
@@ -268,6 +269,10 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	public function getSearchWords() {
 		$searchWordFilterValue = $this->searchWordFilter->getValue();
 
+		// TODO how can we prevent the escaping of an " in the search word value?!?
+		// Seems like we get an escaped " --> \" which we do not want to have, so we replace it again here
+		//$searchWordFilterValue = str_replace('\"', '"', $searchWordFilterValue);
+
 		if ($this->doWeSearchOnEmptySubmit()) {
 			if($searchWordFilterValue == '') $searchWordFilterValue = '*';
 		}
@@ -284,6 +289,8 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	 *
 	 * @param Tx_PtExtlist_Domain_QueryObject_Query $groupDataQuery Query that defines which group data to get
 	 * @param array $excludeFilters List of filters to be excluded from query (<filterboxIdentifier>.<filterIdentifier>)
+	 * @param Tx_PtExtlist_Domain_Configuration_Filters_FilterConfig $filterConfig
+	 * @throws Exception This method cannot be used with solr data backend!
 	 * @return array Array of group data with given fields as array keys
 	 */
 	public function getGroupData(Tx_PtExtlist_Domain_QueryObject_Query $groupDataQuery, $excludeFilters = array(),
@@ -665,12 +672,12 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	/*************************************************************************************
 	 * Building list data
 	 *************************************************************************************/
-
-    /**
-     * Build the listData and cache it in $this->listData
+	/**
+	 * Build the listData and cache it in $this->listData
 	 *
+	 * @throws Exception if the solr query throws an exception
 	 * @return Tx_PtExtlist_Domain_Model_List_ListData Generated list data
-     */
+	 */
     protected function buildListData() {
 		// Check whether we have empty searchword and want to do solr query then.
 		if ($this->getSearchWords() === '' && !$this->doWeSearchOnEmptySubmit()) {
@@ -860,7 +867,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	 * @return tx_solr_Query
 	 */
 	protected function buildQuery() {
-		$query = new tx_solr_Query(''); // keywords are set in modifier chain - not here!
+		$query = new Tx_PtSolr_Domain_SolrQuery(''); // keywords are set in modifier chain - not here!
 
         // TODO Use parameter object that is passed to modifier chain to enable further settings
         $this->queryModifierChain->modifyQuery($query);
