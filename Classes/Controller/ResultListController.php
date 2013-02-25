@@ -45,4 +45,3 @@ class Tx_PtSolr_Controller_ResultListController extends Tx_PtSolr_Controller_Abs
     }
 
 }
-?>

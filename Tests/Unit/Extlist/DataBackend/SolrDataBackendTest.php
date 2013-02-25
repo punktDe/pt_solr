@@ -52,4 +52,3 @@ class Tx_PtSolr_Tests_Unit_Extlist_DataBackend_SolrDataBackendTest extends Tx_Pt
 	}
 
 }
-?>
