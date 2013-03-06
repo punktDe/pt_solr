@@ -33,6 +33,7 @@
  * @subpackage SolrDataBackend\SolrInterpreter
  * @author Daniel Lienert
  * @author Michael Knoll
+ * @see Tx_PtSolr_Tests_Unit_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslatorTest
  */
 class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator implements Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_TranslatorInterface {
 
@@ -73,6 +74,8 @@ class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator im
 
         switch ($operator) {
             case '=' :
+
+			case 'LIKE' :		// 'LIKE' is currently translated the same way as '='
                 return $this->translateEqualsCriteria($field, $value);
                 break;
 
@@ -112,7 +115,7 @@ class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator im
      * @return string Translated equals criteria
      */
     protected function translateEqualsCriteria($field, $value) {
-        return $field . ':"' . $this->solrQuery->escape($value) . '"';
+        return $field . ':' . $this->solrQuery->escape($value);
     }
 
 
