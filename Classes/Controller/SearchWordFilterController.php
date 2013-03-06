@@ -61,10 +61,18 @@ class Tx_PtSolr_Controller_SearchWordFilterController extends Tx_PtSolr_Controll
 
 	/**
 	 * Resets the filters and the pagers
+	 *
+	 * @param string $fullyQualifiedFilterIdentifier Filter identifier of the form filterboxName.filterIdentifier, if given, only this filter is reset
 	 */
-	public function resetAction() {
+	public function resetAction($fullyQualifiedFilterIdentifier = '') {
 		$this->solrExtlistContext->resetPagerCollection();
-		$this->solrExtlistContext->resetFilterboxCollection();
+		if ($fullyQualifiedFilterIdentifier === '') {
+			// No filter identifier given --> reset all filters
+			$this->solrExtlistContext->resetFilterboxCollection();
+		} else {
+			// Filter identifier given --> reset only this filter
+			$this->solrExtlistContext->getFilterByFullFiltername($fullyQualifiedFilterIdentifier)->reset();
+		}
 		// TODO prevent redirect here
 		$this->redirect('show');
 	}
