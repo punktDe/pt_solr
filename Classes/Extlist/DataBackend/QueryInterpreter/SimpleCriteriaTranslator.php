@@ -76,7 +76,8 @@ class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator im
             case '=' :
 
 			case 'LIKE' :		// 'LIKE' is currently translated the same way as '='
-                return $this->translateEqualsCriteria($field, $value);
+				// TODO string filter always puts '%' at begin and end of filter value... we have to replace this
+                return $this->translateEqualsCriteria($field, str_replace('%', '',$value));
                 break;
 
             case 'IN' :
