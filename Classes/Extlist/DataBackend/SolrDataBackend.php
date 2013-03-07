@@ -38,12 +38,13 @@
 class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_DataBackend_AbstractDataBackend {
 
 	/**
-	 * If set to true, some additional debug information will be output
-	 * TODO make this configurable via TS
+	 * If set to TRUE, debug messages will be displayed.
+	 *
+	 * You can also set this in the TypoScript configuration of your list configuration using
+	 *
+	 * backendConfig.debug = 1
 	 */
 	const DEBUG = FALSE;
-
-
 
 	/**
 	 * Holds time required for searching solr
@@ -194,6 +195,15 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 
 
 
+	/**
+	 * Set to TRUE, if we want to see debugging information
+	 *
+	 * @var bool
+	 */
+	protected $debug = FALSE;
+
+
+
 	/*************************************************************************************
 	 * Injection methods
 	 *************************************************************************************/
@@ -332,7 +342,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 			$timeAfter = microtime(true);
 			self::$solrSearchTime += ($timeAfter - $timeBefore);
 
-			if (self::DEBUG) {
+			if ($this->debug()) {
 				echo "Settings for doSearch in solr DataBackend:<pre>";
 				var_dump(
 					array(
@@ -579,12 +589,13 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 	 * Init the configuration for this data backend
 	 */
 	protected function initBackendByTsConfig() {
-        $this->setUpSearchWordFilter();
+        $this->debug = (intval($this->configurationBuilder->getSettings('backendConfig.debug')) === 1);
+		$this->setUpSearchWordFilter();
         $this->setUpQueryModifierChain();
         $this->setUpFacetQueryModifierChain();
 		$this->setUpFacetQueries();
-		if (self::DEBUG) {
-			echo "<pre>";
+		if ($this->debug()) {
+			echo "<pre>Facet query parameters:\n";
 			var_dump($this->facetQueryParameters);
 			echo "</pre>";
 		}
@@ -793,7 +804,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 
         $limit = $query->getResultsPerPage();
 
-		if (self::DEBUG) {
+		if ($this->debug()) {
 			echo "Settings for doSearch in solr DataBackend:<pre>";
 			var_dump(
 				array(
@@ -812,7 +823,7 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 		$afterTime = microtime(true);
 		self::$solrSearchTime += ($afterTime - $beforeTime);
 
-		if (self::DEBUG) {
+		if ($this->debug()) {
 			echo "required search time: " . self::$solrSearchTime;
 		}
 
@@ -955,5 +966,19 @@ class Tx_PtSolr_Extlist_DataBackend_SolrDataBackend extends Tx_PtExtlist_Domain_
 		throw new Exception('IterationListData mode can not be used with the solr backend!', 1349875196);
 	}
 
+
+
+	/**
+	 * Returns TRUE, if debugging is enabled in TS
+	 * settings for backend.
+	 *
+	 * backendConfig.debug = 1
+	 *
+	 * @return mixed
+	 */
+	public function debug() {
+		return ($this->debug || self::DEBUG);
+	}
+
+
 }
-?>

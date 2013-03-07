@@ -35,9 +35,7 @@
  */
 class Tx_PtSolr_Tests_Unit_Extlist_DataBackend_SolrDataBackendTest extends Tx_PtSolr_Tests_BaseTestcase {
 
-	/**
-	 * @test
-	 */
+	/** @test */
 	public function methodGetIterationListDataThrowsException() {
 		try {
 			$solrDataBackendMock = $this->getMockBuilder('Tx_PtSolr_Extlist_DataBackend_SolrDataBackend') /** @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackendMock */
@@ -49,6 +47,17 @@ class Tx_PtSolr_Tests_Unit_Extlist_DataBackend_SolrDataBackendTest extends Tx_Pt
 			return;
 		}
 		$this->fail('No exception has been thrown when trying to get iteration list data from solr data backend.');
+	}
+
+
+
+	/** @test */
+	public function debugReturnsTrueIfDebugIsActivatedInTypoScript() {
+		$configurationBuilder = $this->getMock('Tx_PtExtlist_Domain_Configuration_ConfigurationBuilder', array('getSettings'), array(), '', FALSE);
+		$configurationBuilder->expects($this->any())->method('getSettings')->with('backendConfig.debug')->will($this->returnValue(1));
+		$solrDataBackend = $this->getMock('Tx_PtSolr_Extlist_DataBackend_SolrDataBackend', array('setUpSearchWordFilter', 'setUpQueryModifierChain', 'setUpFacetQueryModifierChain', 'setUpFacetQueries', 'facetQueryParameters', 'initBackend'), array($configurationBuilder), '', TRUE);
+		$solrDataBackend->init();
+		$this->assertTrue($solrDataBackend->debug());
 	}
 
 }
