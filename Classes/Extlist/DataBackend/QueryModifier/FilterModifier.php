@@ -112,4 +112,3 @@ class Tx_PtSolr_Extlist_DataBackend_QueryModifier_FilterModifier extends Tx_PtSo
 	}
     
 }
-?>

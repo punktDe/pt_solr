@@ -33,6 +33,7 @@
  * @subpackage SolrDataBackend\SolrInterpreter
  * @author Daniel Lienert
  * @author Michael Knoll
+ * @see Tx_PtSolr_Tests_Unit_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslatorTest
  */
 class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator implements Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_TranslatorInterface {
 
@@ -73,7 +74,10 @@ class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator im
 
         switch ($operator) {
             case '=' :
-                return $this->translateEqualsCriteria($field, $value);
+
+			case 'LIKE' :		// 'LIKE' is currently translated the same way as '='
+				// TODO string filter always puts '%' at begin and end of filter value... we have to replace this
+                return $this->translateEqualsCriteria($field, str_replace('%', '',$value));
                 break;
 
             case 'IN' :
@@ -112,7 +116,7 @@ class Tx_PtSolr_Extlist_DataBackend_QueryInterpreter_SimpleCriteriaTranslator im
      * @return string Translated equals criteria
      */
     protected function translateEqualsCriteria($field, $value) {
-        return $field . ':"' . $this->solrQuery->escape($value) . '"';
+        return $field . ':' . $this->solrQuery->escape($value);
     }
 
 

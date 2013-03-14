@@ -39,6 +39,11 @@ plugin.tx_ptextlist.settings.listConfig.solr {
 
 
 
+		# Uncomment for debugging information to be displayed
+		# debug = 1
+
+
+
     	# TODO remove this, once DI issues in pt_extlist have been resolved!
     	# Data source is injected via standard DI in solr backend, but we still
     	# have assertions in pt_extlist to check, whether class is set in configuration
