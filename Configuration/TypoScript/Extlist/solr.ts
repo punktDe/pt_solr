@@ -109,7 +109,7 @@ plugin.tx_ptextlist.settings.listConfig.solr {
         # Multiple sort orderings can be separated by a comma,
         # ie: <field name> <direction>[,<field name> <direction>]...
         ######################################################
-        sorting = created desc
+        #sorting = created desc
 
 
 
