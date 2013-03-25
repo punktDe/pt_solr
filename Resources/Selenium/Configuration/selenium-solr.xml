@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<phpunit>
+	<selenium>
+		<browser name="Firefox Windows XP"
+				 browser="*firefox"
+				 host="selenium.intern.punkt.de"
+				 port="4445"
+				 timeout="300" />
+	</selenium>
+	<testsuites>
+		<testsuite name="Westfalen Selenium Test after Cron">
+ 			<directory suffix="Test.php">../PhpUnit/</directory>
+		</testsuite>
+	</testsuites>
+	<php>
+		<var name="SeleniumUrl" value="http://cid2016v771.hs11.hosting.punkt.de/" />
+	</php>
+</phpunit>

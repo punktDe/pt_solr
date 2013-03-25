@@ -14,5 +14,7 @@ return array(
 	'tx_ptsolr_tests_basetestcase' => $extensionPath . 'Tests/BaseTestcase.php',
 	'tx_ptsolr_tests_unit_controller_abstractactioncontrollertest' => $extensionPath . 'Tests/Unit/Controller/AbstractActionControllerTest.php',
 	'tx_ptsolr_tests_unit_controller_abstractactioncontrollerimplementationmock' => $extensionPath . 'Tests/Unit/Controller/AbstractActionControllerTest.php',
+	'tx_ptsolr_tasks_seleniumandpingtest' => $extensionPath . 'Classes/Tasks/SeleniumAndPingTest.php',
+	'tx_ptsolr_tasks_addfields' => $extensionPath . 'Classes/Tasks/AddFields.php',
 );
 ?>

@@ -62,4 +62,10 @@ $TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_autocomplete'] = 'EXT:'.$_EXTKE
 // registering the eID script for live-search feature
 $TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_quicksearch'] = 'EXT:'.$_EXTKEY.'/Classes/Eid/QuickSearch.php';
 
-?>
+// register scheduler task for Solr Seleniumtests
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Tx_PtSolr_Tasks_SeleniumAndPingTest'] = array(
+	'extension'        => $_EXTKEY,
+	'title'            => 'Seleniumtest and Ping Solr',
+	'description'      => 'Runs Seleniumtest for Solr and ping on Solrserver.',
+	'additionalFields' => 'Tx_PtSolr_Tasks_AddFields'
+);
