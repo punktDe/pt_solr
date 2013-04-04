@@ -140,11 +140,19 @@ plugin.tx_ptextlist.settings.listConfig.solr {
                 queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_HighlightingModifier
             }
 
+            60 {
+            	queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryFieldsModifier
+            }
+
         }
 
 
 
         facetQueryModifierChain {
+
+            20 {
+            	queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryFieldsModifier
+            }
 
             30 {
                 queryModifierClass = Tx_PtSolr_Extlist_DataBackend_QueryModifier_UserAccessGroupModifier
@@ -161,6 +169,11 @@ plugin.tx_ptextlist.settings.listConfig.solr {
 
         # If set to 1, an empty searchword leads to an non-fullfillable solr query in backend
         emptyFacetsOnEmptySearch = 1
+
+
+
+        # Set up query fields and boosting
+        qf = content^40.0, title^5.0, keywords^2.0, tagsH1^5.0, tagsH2H3^3.0, tagsH4H5H6^2.0, tagsInline^1.0
 
     }
 

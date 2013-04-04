@@ -27,34 +27,27 @@
  ***************************************************************/
 
 /**
- * Class implements abstract query modifier to be extended by query modifiers for solr data backend
+ * Class implements modifier that sets query fields (qf) parameter in solr query
  *
  * @author Michael Knoll
- * @author Daniel Lienert
  * @package Extlist
  * @subpackage DataBackend\QueryModifier
  */
-abstract class Tx_PtSolr_Extlist_DataBackend_QueryModifier_AbstractQueryModifier implements Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryModifierInterface {
+class Tx_PtSolr_Extlist_DataBackend_QueryModifier_QueryFieldsModifier extends Tx_PtSolr_Extlist_DataBackend_QueryModifier_AbstractQueryModifier {
 
     /**
-     * Holds instance of associated solr data backend
+     * Modifies given query due to functionality of current modifier
      *
-     * @var Tx_PtSolr_Extlist_DataBackend_SolrDataBackend
-     */
-    protected $dataBackend;
-
-
-
-    /**
-     * Injector for solr data backend
-	 *
-	 * TODO remove '_' in method name as soon as DI issues are resolved
+     * This modifier sets qf parameter from backend configuration for solr extlist configuration
      *
-     * @param Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend
+     * @param tx_solr_Query $solrQuery
      * @return void
      */
-    public function _injectDataBackend(Tx_PtSolr_Extlist_DataBackend_SolrDataBackend $solrDataBackend) {
-        $this->dataBackend = $solrDataBackend;
+    public function modifyQuery(tx_solr_Query $solrQuery) {
+		$queryFields = $this->dataBackend->getConfigurationBuilder()->buildDataBackendConfiguration()->getSettings('qf');
+		if ($queryFields !== array()) {
+			$solrQuery->setQueryFieldsFromString($queryFields);
+		}
     }
 
 }

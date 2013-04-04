@@ -17,4 +17,3 @@ return array(
 	'tx_ptsolr_tasks_seleniumandpingtest' => $extensionPath . 'Classes/Tasks/SeleniumAndPingTest.php',
 	'tx_ptsolr_tasks_addfields' => $extensionPath . 'Classes/Tasks/AddFields.php',
 );
-?>

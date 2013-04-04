@@ -1,15 +1,20 @@
 ####################################################
-# TypoScript configuration for pt_solr
+# Main TypoScript configuration for pt_solr
 #
 # @author Michael Knoll <knoll@punkt.de>
-# @package Typo3
-# @subpackage pt_solr
+# @package pt_solr
 ####################################################
 
-## Inclusion of external TypoScript resources
+## Inclusion of external pt_extlist TypoScript resources
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist/Configuration/TypoScript/setup.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_extlist_solr/Configuration/TypoScript/BaseConfig/BaseConfig.ts">
+
+
+
+## Inclusion of solr TypoScript resources
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:solr/static/solr/setup.txt">
+
+# Reset all query fields configuration that we get from solr extension  -- we set them in backend config
+plugin.tx_solr.search.query.fields >
 
 ## ATTENTION!!! We get all the solr configuration here - including indexing configuration. Remember to reset this in
 ## your depending extension if you do not want to have this using
@@ -17,6 +22,10 @@
 ## plugin.tx_solr.index >
 
 
+
 ## Inclusion of pt_solr's TypoScript resources
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_solr/Configuration/TypoScript/Extlist/solr.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_solr/Configuration/TypoScript/Extbase/BaseSettings.ts">
+
+
+
