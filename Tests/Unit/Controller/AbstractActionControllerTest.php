@@ -47,7 +47,8 @@ class Tx_PtSolr_Tests_Unit_Controller_AbstractActionControllerTest extends Tx_Pt
 	 * Sets up testcase before tests are run
 	 */
 	public function setUp() {
-		$this->abstractControllerMock = new Tx_PtSolr_Tests_Unit_Controller_AbstractActionControllerImplementationMock();
+		$lifeCycleManagerMock = $this->getMock('Tx_PtExtbase_Lifecycle_Manager', array(), array(), '', FALSE); /* @var $lifeCycleManagerMock Tx_PtExtbase_Lifecycle_Manager */
+		$this->abstractControllerMock = new Tx_PtSolr_Tests_Unit_Controller_AbstractActionControllerImplementationMock($lifeCycleManagerMock);
 	}
 
 
