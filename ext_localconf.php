@@ -79,6 +79,9 @@ $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/solr/classes/fileindexer/
 
 
 
-// Configure file extraction to use tika in server mode
+// Configure file extraction NOT to use tika in server mode
 require_once t3lib_extMgm::extPath('pt_solr') .  'Classes/XClasses/Ux_Tx_Solr_Fileindexer_File.php'; // Seems like autoload is not working here...
-ux_tx_solr_fileindexer_File::useTikaServerInMode(TRUE);
+ux_tx_solr_fileindexer_File::useTikaServerInMode(FALSE);
+
+// Use this line in your project if you want to enable file extraction using tika in server mode:
+#ux_tx_solr_fileindexer_File::useTikaServerInMode(TRUE);
