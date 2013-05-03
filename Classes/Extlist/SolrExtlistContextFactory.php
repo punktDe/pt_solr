@@ -42,7 +42,7 @@ class Tx_PtSolr_Extlist_SolrExtlistContextFactory extends Tx_PtExtlist_ExtlistCo
 	 */
 	public static function getContextByListIdentifier($listIdentifier) {
 
-		if(!array_key_exists($listIdentifier, parent::$instances)) {
+		if(!array_key_exists($listIdentifier, parent::$staticInstances)) {
 
 			$extListBackend = Tx_PtExtlist_Domain_DataBackend_DataBackendFactory::getInstanceByListIdentifier($listIdentifier, false);
 
@@ -50,17 +50,21 @@ class Tx_PtSolr_Extlist_SolrExtlistContextFactory extends Tx_PtExtlist_ExtlistCo
 				$extListTs = self::getExtListTyposcriptSettings($listIdentifier);
 				self::loadLifeCycleManager();
 
-				Tx_PtExtlist_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($extListTs);
-				$configurationBuilder = Tx_PtExtlist_Domain_Configuration_ConfigurationBuilderFactory::getInstance($listIdentifier);
+				// TODO resolve this properly with Dependency Injection once we have cascading container
+				#Tx_PtExtlist_Domain_Configuration_ConfigurationBuilderFactory::injectSettings($extListTs);
+				$configurationBuilderFactory = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager')->get('Tx_PtExtlist_Domain_Configuration_ConfigurationBuilderFactory'); /* @var $configurationBuilderFactory Tx_PtExtlist_Domain_Configuration_ConfigurationBuilderFactory */
+				$configurationBuilderFactory->setSettings($extListTs);
+				$configurationBuilder = $configurationBuilderFactory->getInstance($listIdentifier);
+				#$configurationBuilder = Tx_PtExtlist_Domain_Configuration_ConfigurationBuilderFactory::getInstance($listIdentifier);
 
 				$extListBackend = Tx_PtExtlist_Domain_DataBackend_DataBackendFactory::createDataBackend($configurationBuilder);
 			}
 
-			parent::$instances[$listIdentifier] = self::buildContext($extListBackend);
+			parent::$staticInstances[$listIdentifier] = self::buildContext($extListBackend);
 
 		}
 
-		return parent::$instances[$listIdentifier];
+		return parent::$staticInstances[$listIdentifier];
 	}
 
 
