@@ -62,6 +62,8 @@ $TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_autocomplete'] = 'EXT:'.$_EXTKE
 // registering the eID script for live-search feature
 $TYPO3_CONF_VARS['FE']['eID_include']['tx_ptsolr_quicksearch'] = 'EXT:'.$_EXTKEY.'/Classes/Eid/QuickSearch.php';
 
+
+
 // register scheduler task for Solr Seleniumtests
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Tx_PtSolr_Tasks_SeleniumAndPingTest'] = array(
 	'extension'        => $_EXTKEY,
@@ -69,3 +71,14 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Tx_PtSolr_Tasks
 	'description'      => 'Runs Seleniumtest for Solr and ping on Solrserver.',
 	'additionalFields' => 'Tx_PtSolr_Tasks_AddFields'
 );
+
+
+
+// register x-classing for file indexer class
+$GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/solr/classes/fileindexer/class.tx_solr_fileindexer_file.php'] = t3lib_extMgm::extPath('pt_solr') .  'Classes/XClasses/Ux_Tx_Solr_Fileindexer_File.php';
+
+
+
+// Configure file extraction to use tika in server mode
+require_once t3lib_extMgm::extPath('pt_solr') .  'Classes/XClasses/Ux_Tx_Solr_Fileindexer_File.php'; // Seems like autoload is not working here...
+ux_tx_solr_fileindexer_File::useTikaServerInMode(TRUE);

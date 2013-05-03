@@ -16,4 +16,5 @@ return array(
 	'tx_ptsolr_tests_unit_controller_abstractactioncontrollerimplementationmock' => $extensionPath . 'Tests/Unit/Controller/AbstractActionControllerTest.php',
 	'tx_ptsolr_tasks_seleniumandpingtest' => $extensionPath . 'Classes/Tasks/SeleniumAndPingTest.php',
 	'tx_ptsolr_tasks_addfields' => $extensionPath . 'Classes/Tasks/AddFields.php',
+	'ux_tx_solr_fileindexer_file' => $extensionPath . 'Classes/XClasses/Ux_Tx_Solr_Fileindexer_File.php'
 );

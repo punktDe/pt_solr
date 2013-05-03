@@ -18,7 +18,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'author_email' => 'knoll@punkt.de',
 	'author_company' => 'punkt.de',
 	'shy' => '',
-	'dependencies' => 'cms,extbase,fluid,solr,pt_extlist,pt_extlist_solr',
+	'dependencies' => 'cms,extbase,fluid,solr,pt_extlist,solrfile',
 	'conflicts' => '',
 	'priority' => '',
 	'module' => '',
@@ -35,6 +35,8 @@ $EM_CONF[$_EXTKEY] = array(
 			'cms' => '',
 			'extbase' => '',
 			'fluid' => '',
+			'solr' => '3.0.0',
+			'solrfile' => '1.0.1'
 		),
 		'conflicts' => array(
 		),
