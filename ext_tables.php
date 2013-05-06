@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2012 Michael Knoll <knoll@punkt.de>, punkt.de GmbH
+*  (c) 2013 Michael Knoll <knoll@punkt.de>, punkt.de GmbH
 *
 *
 *  All rights reserved
@@ -24,6 +24,12 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+
+/**
+ * Configuration file for pt_solr extension
+ *
+ * @author Michael Knoll
+ */
 if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
 // Register plugin in available plugins
@@ -32,6 +38,49 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 	'Pi1',
 	'Solr'
 );
+
+
+
+/**
+ *  Register the Backend Modules for this Extension
+ */
+if (TYPO3_MODE === 'BE') {
+
+	// Register the installation tool
+	Tx_Extbase_Utility_Extension::registerModule(
+		$_EXTKEY,
+		'tools', // Make module a submodule of 'tools'
+		'tx_solr_m1', // Submodule key
+		'0', // Position
+		array( // An array holding the controller-action-combinations that are accessible
+			'Installation' => 'index'
+		),
+		array(
+			'access' => 'user,group',
+			'icon' => 'EXT:pt_solr/ext_icon.gif',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod_installation.xml',
+		)
+	);
+
+
+	// Register the debugging tool
+	Tx_Extbase_Utility_Extension::registerModule(
+		$_EXTKEY,
+		'tools', // Make module a submodule of 'tools'
+		'tx_solr_m2', // Submodule key
+		'0', // Position
+		array( // An array holding the controller-action-combinations that are accessible
+			'Debug' => 'index'
+		),
+		array(
+			'access' => 'user,group',
+			'icon' => 'EXT:pt_solr/ext_icon.gif',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod_debug.xml',
+		)
+	);
+}
+
+
 
 $extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName) . '_pi1';
@@ -42,4 +91,3 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_
 // Make static TypoScript template available in includes
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', '[pt_solr] Solr');
 
-?>

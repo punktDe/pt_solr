@@ -1,0 +1,34 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+    <h2>Solr Installation</h2>
+
+    <f:form action="index" controller="Installation" method="post" object="{solrSiteConfiguration}">
+
+        <div class="outer-wrapper">
+            <label for="site-root-name">Site root domain:</label>
+        	<div class="outer-field-wrapper">
+        		<div class="field-wrapper type-text">
+                    <f:form.textfield property="siteRootName" id="site-root-name" />
+        		</div>
+        	</div>
+        </div>
+
+        <div class="outer-wrapper">
+            <label for="site-root-uid">Site root UID (UID of root page for the site):</label>
+            <div class="outer-field-wrapper">
+                <div class="field-wrapper type-text">
+                    <f:form.textfield property="siteRootUid" id="site-root-uid" />
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <f:form.submit class="submit btn btn-primary" value="Run installation" />
+    </f:form>
+
+</f:section>
+
+<f:section name="beButtonsLeft" />
