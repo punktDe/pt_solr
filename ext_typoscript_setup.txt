@@ -1,0 +1,15 @@
+####################################################
+# pt_solr configuration for backend
+#
+# TypoScript code included in this file is added by
+# default when pt_solr is loaded and installed. It contains
+# all TypoScript settings to make pt_solr work in the
+# backend so that no inclusion of static templates is
+# required anymore.
+#
+# @author Michael Knoll <knoll@punkt.de>
+# @package pt_solr
+# @subpackage TypoScript
+####################################################
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pt_solr/Configuration/TypoScript/Backend/setup.ts">

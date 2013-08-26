@@ -30,7 +30,52 @@
  * @package Controller
  * @author Michael Knoll <knoll@punkt.de>
  */
-class Tx_PtSolr_Controller_DebugController extends Tx_PtSolr_Controller_AbstractBackendController {
+class Tx_PtSolr_Controller_DebugController extends Tx_PtExtlist_Controller_AbstractBackendListController {
+
+	/**
+	 * @var string relative path under settings of this extension to the extlist typoScript configuration
+	 */
+	protected $extlistTypoScriptSettingsPath = 'listConfigs.backendDebug';
+
+
+
+	/**
+	 * @var string the pagerIdentifier to use
+	 */
+	protected $pagerIdentifier = 'delta';
+
+
+
+	/**
+	 * @var string
+	 */
+	protected $filterboxIdentifier = 'debugFilterbox';
+
+
+
+	/**
+	 * Array of available exportTypeIdentifiers
+	 *
+	 * @var array
+	 */
+	protected $exportIdentifiers = array();
+
+
+
+	/**
+	 * Set up this controller with list identifier
+	 */
+	public function initializeAction() {
+		parent::initializeAction();
+	}
+
+
+
+	protected function initListIdentifier() {
+		$this->listIdentifier = 'backendDebug';
+	}
+
+
 
     /**
      * Action renders an overview page for the backend module
@@ -38,7 +83,7 @@ class Tx_PtSolr_Controller_DebugController extends Tx_PtSolr_Controller_Abstract
      * @return string Rendered overview page
      */
     public function indexAction() {
-        // TODO implement me!
+        $this->view->assign('listData', $this->extListContext->getRenderedListData());
     }
 
 }
